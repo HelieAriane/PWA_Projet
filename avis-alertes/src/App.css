@@ -94,3 +94,37 @@ header {
   background-color: #fff;
   color: #212529;
 }
+
+/* FilterSection */
+.filterSection {
+  background-color: #ffffff;
+  padding: 20px;
+  margin: 20px 50px;
+  gap: 20px;
+  
+}
+
+.filters {  
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.filter-options {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 30px;
+  padding: 20px 20px;
+  margin: 20px auto;
+  flex: 1;
+}
+
+.filter-options input, select {
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 16px;  
+  background-color: #fff;
+  color: #212529;
+}
