@@ -2,6 +2,7 @@ import './App.css'
 import Header from './layouts/Header'
 import SearchSection from './layouts/SearchSection'
 import FilterSection from './layouts/FilterSection'
+import SubscribeSection from './layouts/SubscribeSection'
 
 function App() {
   return (
@@ -9,6 +10,7 @@ function App() {
       <Header></Header>
       <SearchSection></SearchSection>
       <FilterSection></FilterSection>
+      <SubscribeSection></SubscribeSection>
     </>
   )
 }

@@ -128,3 +128,26 @@ header {
   background-color: #fff;
   color: #212529;
 }
+
+/* SubscribeSection */
+.subscribeSection {
+  padding: 20px;
+  text-align: left;
+  background-color: #ddd;
+}
+
+.subscribeSection h1 {
+  font-size: 24px;
+}
+
+.subscribeSection p {
+  font-size: 16px;
+  color: #7e7e7e;
+}
+
+.subscribeButton {  
+  color: #097d6c;
+  background-color: transparent;
+  font-size: 16px;
+  font-weight: bold;
+}
