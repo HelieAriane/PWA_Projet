@@ -151,3 +151,19 @@ header {
   font-size: 16px;
   font-weight: bold;
 }
+
+/* AlertSection */
+.alertSection {
+  background-color: #fff;
+}
+
+.alert-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.alert-item {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+}
