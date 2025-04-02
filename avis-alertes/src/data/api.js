@@ -26,4 +26,15 @@ async function fetchAlerts(limit = 10) {
   }
 }
 
+  const API = {
+    fetchAlerts,
+    getAlerts() {
+      return DATA;
+    },
+    find(id) {
+      return DATA.find(item => item.id === id);
+    }
+  }
+
+
 export default fetchAlerts;

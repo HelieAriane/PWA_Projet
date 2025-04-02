@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import fetchAlerts from "../data/api";
 
-function AlertItem() {
+function AlertItem({ alerts }) {
   const { id } = useParams();
   const [alert, setAlert] = useState(null);
   
