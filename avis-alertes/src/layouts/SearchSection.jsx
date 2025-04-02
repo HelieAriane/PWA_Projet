@@ -2,11 +2,12 @@ import { useState } from "react";
 import SearchBar from "../components/SearchBar";
 import searchIcon from '../assets/search_icon.svg';
 
-function SearchSection() {
+function SearchSection({ onSearch }) {
   const [searchQuery, setSearchQuery] = useState("")
 
   function handleSearch(query) {
     setSearchQuery(query);
+    onSearch(query)
     console.log("Recherche: ", query)
   }
 

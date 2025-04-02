@@ -1,9 +1,9 @@
 import Filters from "../components/Filters";
 
-function FilterSection() {
+function FilterSection({ onDistrictChange, /* onStartDateChange, onEndDateChange, */ onSubjectChange }) {
   return (
     <div className="filterSection">
-      <Filters />
+      <Filters onDistrictChange={onDistrictChange} /* onStartDateChange={onStartDateChange} onEndDateChange={onEndDateChange} */ onSubjectChange={onSubjectChange} /> 
     </div>
   )
 }

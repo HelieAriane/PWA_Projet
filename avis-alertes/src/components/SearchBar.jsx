@@ -5,18 +5,14 @@ function SearchBar({ icon, onSearch }) {
 
   function handleInputChange(event) {
     setQuery(event.target.value);
+    onSearch(event.target.value);
   }
 
-  function handleSearch(event) {
-    if (event.key === "Enter") {
-      onSearch(query)
-    }
-  }
 
   return (
     <div className="search-bar">
       <img src={icon} alt="Rechercher" className="search-bar-icon" />
-      <input type="text" placeholder="Que cherchez-vous?" value={query} onChange={handleInputChange} onKeyDown={handleSearch}/>
+      <input type="text" placeholder="Que cherchez-vous?" value={query} onChange={handleInputChange} />
     </div>
   );
 }

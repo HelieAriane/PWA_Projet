@@ -1,7 +1,3 @@
-import { useState } from "react";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-
 const districts = [
   "Ahuntsic-Cartierville",
   "Anjou",
@@ -36,33 +32,44 @@ const subjects = [
   "Urgence"
 ];
 
-function Filters() {
-  const [selectedDistrict, setSelectedDistrict] = useState("");
-  const [selectedDate, setSelectedDate] = useState(null);
-  const [selectedSubject, setSelectedSubject] = useState("");
-  
+function Filters({ startDate, endDate, onDistrictChange, onStartDateChange, onEndDateChange, onSubjectChange }) {
+
   return (
     <div className="filters">
       <div className="filter-options">
-        <select id="districts" value={selectedDistrict} onChange={(e) => setSelectedDistrict(e.target.value)}>
+        <select id="districts" onChange={(e) => onDistrictChange(e.target.value)}>
           <option value={""}>Arrondissement</option>
           {districts.map((district, index) => (
             <option key={index} value={district}>{district}</option>
           ))}
         </select>
       </div>
+
       <div className="filter-options">
-        <DatePicker selected={selectedDate} placeholderText="Date" onChange={(date) => setSelectedDate(date)}></DatePicker>
+        <form action={""} >
+          <label htmlFor="">
+            De: <input type="date" name="startDate" id="startDate" onChange={(e) => onStartDateChange(e.target.value)} value={startDate}/>
+          </label>
+        </form>
       </div>
+
       <div className="filter-options">
-        <select id="subjects" value={selectedSubject} onChange={(e) => setSelectedSubject(e.target.value)}>
+        <form action={""}>
+          <label htmlFor="">
+            À: <input type="date" name="endDate" id="endDate" onChange={(e) => onEndDateChange(e.target.value)} value={endDate}/>
+          </label>
+        </form>
+      </div>
+
+      <div className="filter-options">
+        <select id="subjects" onChange={(e) => onSubjectChange(e.target.value)}>
           <option value={""}>Sujet</option>
           {subjects.map((subject, index) => (
             <option key={index} value={subject}>{subject}</option>
           ))}
         </select>
       </div>
-    </div>
+    </div >
   )
 }
 
