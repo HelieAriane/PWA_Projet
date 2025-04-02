@@ -1,6 +1,6 @@
 import { useState} from "react";
 
-function SearchBar({ onSearch, icon }) {
+function SearchBar({ icon, onSearch }) {
   const [query, setQuery] = useState("");
 
   function handleInputChange(event) {

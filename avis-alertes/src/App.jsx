@@ -1,22 +1,19 @@
-import './App.css'
-import Header from './layouts/Header'
-import SearchSection from './layouts/SearchSection'
-import FilterSection from './layouts/FilterSection'
-import SubscribeSection from './layouts/SubscribeSection'
-import AlertSection from './layouts/AlertSection'
+import "./App.css"
+import Header from "./layouts/Header"
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import Home from "./pages/Home"
+import AlertDetail from "./pages/AlertDetail"
 
 function App() {
   return (
-    <>
+    <Router>
       <Header></Header>
-      <main>
-        <SearchSection></SearchSection>
-        <FilterSection></FilterSection>
-        <SubscribeSection></SubscribeSection>
-        <AlertSection></AlertSection>
-      </main>
-    </>
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/alertDetail' element={<AlertDetail />} />
+      </Routes>
+    </Router>
   )
 }
 
-export default App
+export default App;

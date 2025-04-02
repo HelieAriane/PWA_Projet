@@ -10,9 +10,8 @@ function AlertItem() {
     async function fetchData() {
       const data = await fetchAlerts();
       console.log('Fetch alerts:', data);
-      console.log('Searching for ID:', id);
 
-      const foundAlert = data.find(item => Number(item._id) === Number(id));
+      const foundAlert = data.find(item => item.id === id);
 
       console.log('Found alert:', foundAlert);
       setAlert(foundAlert);
@@ -30,7 +29,6 @@ function AlertItem() {
         <h1>{alert.titre}</h1>
         <strong>Date: {alert.date_debut}</strong> <br />
         <strong>Type: {alert.type}</strong> <br />
-        <a href={alert.lien}>Lire plus</a>
       </div>
     </div>
   )
