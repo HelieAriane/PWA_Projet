@@ -1,11 +1,13 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import fetchAlerts from "../data/api";
+import { toDateString, toTimeString } from "../utils/date";
+import { extractDateFromUrl } from "./AlertList";
 
 function AlertItem({ alerts }) {
   const { id } = useParams();
   const [alert, setAlert] = useState(null);
-  
+
   useEffect(() => {
     async function fetchData() {
       const data = await fetchAlerts();
@@ -18,18 +20,20 @@ function AlertItem({ alerts }) {
     }
     fetchData();
   }, [id]);
-  
+
   if (!alert) {
     return <h2>Aucune alerte trouvée</h2>
   }
 
+  const dateFromLink = extractDateFromUrl(alert.lien);
+  const formattedDate = dateFromLink ? toDateString(dateFromLink) : "Date inconnue";
+  const formattedTime = dateFromLink ? toTimeString(dateFromLink) : "Heure inconnue";
+
   return (
     <div className="alert-item">
-      <div className="alert-info">
-        <h1>{alert.titre}</h1>
-        <strong>Date: {alert.date_debut}</strong> <br />
-        <strong>Type: {alert.type}</strong> <br />
-      </div>
+      <h1>{alert.titre}</h1>
+      <strong>Publié le {formattedDate} à {formattedTime}</strong> <br />
+      <strong>{alert.type}</strong> <br />
     </div>
   )
 }

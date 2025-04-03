@@ -4,6 +4,7 @@ import FilterSection from "./FilterSection";
 import SearchSection from "./SearchSection";
 import fetchAlerts from "../data/api";
 import { parseDate, isWithin, isAfter, isBefore } from "../utils/date";
+import SubscribeSection from "./SubscribeSection";
 
 function AlertSection() {
   const [alerts, setAlerts] = useState([]);
@@ -69,10 +70,17 @@ function AlertSection() {
   }, [searchQuery, selectedDistrict, /* selectedStartDate, selectedEndDate, */ selectedSubject, alerts]);
 
   return (
-    <div className="alertSection">
-      <SearchSection onSearch={setSearchQuery} />
-      <FilterSection onDistrictChange={setSelectedDistrict} /* onStartDateChange={setSelectedStartDate} onEndDateChange={setSelectedEndDate} */ onSubjectChange={setSelectedSubject} />
-      <AlertList alerts={filteredAlerts} />
+    <div>
+      <div>
+        <SearchSection onSearch={setSearchQuery} />
+        <FilterSection onDistrictChange={setSelectedDistrict} /* onStartDateChange={setSelectedStartDate} onEndDateChange={setSelectedEndDate} */ onSubjectChange={setSelectedSubject} />
+      </div>
+      <div className="alertSubscribeSection">
+        <div className="alertSection">
+          <AlertList alerts={filteredAlerts} />
+        </div>
+        <SubscribeSection />
+      </div>      
     </div>
   )
 }

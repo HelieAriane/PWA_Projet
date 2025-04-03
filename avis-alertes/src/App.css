@@ -1,9 +1,14 @@
 body {
-  background-color: #f9f9f9;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Montréal", Helvetica, Arial, sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.75;
   color: #212529;
+  text-align: left;
+  background-color: #fff;
   margin: 0;
   padding: 0;
+  width: 100%;
 }
 
 /* Header */
@@ -32,7 +37,7 @@ header {
 .account-icon {
   display: flex;
   align-items: center;
-  color: #000;
+  color: #212529;
 }
 
 .account-icon:hover {
@@ -55,106 +60,178 @@ header {
 /* SearchSection */
 .searchSection {
   text-align: left;
-  padding: 125px 200px 50px;
+  padding-top: 100px;
+  padding-left: 200px;
+  padding-bottom: 70px;
+  padding-right: 400px;
+  background-color: #f1f2f3;
+  width: 100%;
 }
 
 .searchSection h1 {
   font-size: 40px;
-  margin-bottom: 10px;
-  font-weight: bolder;
+  margin-bottom: 0;
 }
 
 .searchSection p {
-  font-size: 18px;
-  margin-bottom: 30px;
+  font-size: 20px;
+  padding: 0px 0px 8px;  
 }
 
 .search-bar {
+  position: relative;
   display: flex;
   align-items: center;
-  max-width: 400px;
-  justify-content: center;
-  background-color: #fff;
   border: 1px solid #ddd;
   border-radius: 30px;
-  padding: 20px 20px;
-  margin: 20px auto;
+  padding: 6px 10px;
+  padding-right: 20px;
+  width: 650px;
+  background-color: #fff;
 }
 
 .search-bar-icon {
-  width: 25px;
-  margin-right: 10px;
+  width: 40px;
 }
 
 .search-bar input {
   flex: 1;
+  background-color: transparent;
   border: none;
   outline: none;
-  font-size: 16px;  
-  background-color: #fff;
+  font-size: 16px;
+  font-weight: 400;
+  width: 100%;
   color: #212529;
+}
+
+.search-bar:focus-within::after {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  border: 2px solid #097d6c;
+  border-radius: 34px;
+}
+
+.search-bar input:focus {
+  border-color: transparent;
 }
 
 /* FilterSection */
 .filterSection {
-  background-color: #ffffff;
-  padding: 20px;
-  margin: 20px 50px;
-  gap: 20px;
-  
+  display: flex;
+  justify-content: left;
+  padding-top: 10px;
+  padding-left: 200px;
+  padding-bottom: 10px;
+  padding-right: 400px;
+  border-bottom: 1px solid #ced4da;
+  width: 100%;
 }
 
-.filters {  
+.filters {
   display: flex;
-  justify-content: space-between;
   gap: 20px;
-  flex-wrap: wrap;
 }
 
 .filter-options {
-  background-color: #fff;
   border: 1px solid #ddd;
   border-radius: 30px;
-  padding: 20px 20px;
-  margin: 20px auto;
-  flex: 1;
+  padding: 8px 15px;
+  background-color: #fff;
+  position: relative;
 }
 
 .filter-options input, select {
-  width: 100%;
+  background-color: transparent;
   border: none;
   outline: none;
-  font-size: 16px;  
-  background-color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+  width: auto;
   color: #212529;
+}
+
+.filter-options:focus-within::after {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  border: 2px solid #097d6c;
+  border-radius: 34px;
+  background-color: rgba(13, 165, 102, 0.1);
+}
+
+/* AlertSubscribeSection */
+.alertSubscribeSection {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;  
+  padding-top: 40px;
+  padding-left: 200px;
+  padding-bottom: 40px;
+  gap: 20px;
 }
 
 /* SubscribeSection */
 .subscribeSection {
+  background: #f8f9fa;
   padding: 20px;
+  border-radius: 10px;
   text-align: left;
-  background-color: #ddd;
+  flex: 0 0 325px;
+  max-width: 325px;
+  margin-right: 400px;
 }
 
 .subscribeSection h1 {
+  color: #212529;
   font-size: 24px;
+  margin: 0px 0px 16px;
+  line-height: 32px;
 }
 
 .subscribeSection p {
+  color: #637381;
   font-size: 16px;
-  color: #7e7e7e;
+  margin: 0px 0px 16px;
+  line-height: 28px;
 }
 
-.subscribeButton {  
-  color: #097d6c;
+.subscribeButton {
   background-color: transparent;
+  color: #097d6c;
   font-size: 16px;
   font-weight: bold;
+  display: flex;
+  align-items: center;
+  border: none;
+}
+
+.subscribeButton:hover {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+  border: none;
+}
+
+.arrow-icon {
+  width: 45px;
 }
 
 /* AlertSection */
 .alertSection {
   background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  max-width: 700px;
+  flex: 1;
 }
 
 .alert-list {
@@ -163,7 +240,64 @@ header {
 }
 
 .alert-item {
-  background-color: #f9f9f9;
-  border: 1px solid #ddd;
-  border-radius: 10px;
+  padding: 20px;
+  border-bottom: 1px solid #ced4da;
+  color: #212529;
+  text-decoration: none;
+}
+
+.alert-item h2 {
+  color: #212529;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 28px;
+  margin-bottom: 8px;
+}
+
+.alert-item:hover {
+  color: #212529
+}
+
+.alert-item:hover h2 {
+  color: #097d6c;
+}
+
+.alert-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.subject {
+  font-size: 14px;
+  font-weight: 700;
+  padding: 1px 8px;
+  background-color: #DEE2E6;
+  width: max-content;
+  margin-bottom: 8px;
+}
+
+.date-time {
+  display: flex;
+  gap: 15px;
+}
+
+.calendar, .time {  
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 14px;
+  line-height: 20px;
+  color: #637381;
+}
+
+.calendar-icon-image {
+  width: 38px;
+  margin-right: 5px;
+  transform: scaleX(-1);
+}
+
+.time-icon-image {
+  width: 50px;
+  transform: scaleX(-1);  
+  margin-right: -4px;
 }
