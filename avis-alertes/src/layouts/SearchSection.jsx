@@ -16,7 +16,6 @@ function SearchSection({ onSearch }) {
       <h1>Avis et alertes</h1>
       <p>Trouver un avis</p>
       <SearchBar icon={searchIcon} onSearch={handleSearch} />
-      {searchQuery && <p>{searchQuery}</p>}
     </div>
   )
 }

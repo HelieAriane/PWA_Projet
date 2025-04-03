@@ -1,6 +1,6 @@
-import Logo from '../components/Logo';
-import AccountLink from '../components/Account';
-import accountIcon from '../assets/account_icon.svg';
+import Logo from "../components/Logo";
+import AccountLink from "../components/Account";
+import accountIcon from "../assets/account_icon.svg";
 
 function Header() {
   return (

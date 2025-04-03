@@ -7,8 +7,8 @@ function Home() {
     <>
       <Header></Header>
       <main>
-        <SubscribeSection></SubscribeSection>
         <AlertSection></AlertSection>
+        <SubscribeSection></SubscribeSection>
       </main>
     </>
   )
