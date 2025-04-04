@@ -10,7 +10,7 @@ function App() {
       <Header></Header>
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/alertDetail' element={<AlertDetail />} />
+        <Route path='/alertDetail/:id' element={<AlertDetail />} />
       </Routes>
     </Router>
   )

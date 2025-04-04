@@ -11,8 +11,8 @@ function AlertSection() {
   const [filteredAlerts, setFilteredAlerts] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedDistrict, setSelectedDistrict] = useState("");
-/*   const [selectedStartDate, setSelectedStartDate] = useState("");
-  const [selectedEndDate, setSelectedEndDate] = useState(""); */
+  /*   const [selectedStartDate, setSelectedStartDate] = useState("");
+    const [selectedEndDate, setSelectedEndDate] = useState(""); */
   const [selectedSubject, setSelectedSubject] = useState("");
 
   useEffect(() => {
@@ -70,18 +70,20 @@ function AlertSection() {
   }, [searchQuery, selectedDistrict, /* selectedStartDate, selectedEndDate, */ selectedSubject, alerts]);
 
   return (
-    <div>
-      <div>
-        <SearchSection onSearch={setSearchQuery} />
-        <FilterSection onDistrictChange={setSelectedDistrict} /* onStartDateChange={setSelectedStartDate} onEndDateChange={setSelectedEndDate} */ onSubjectChange={setSelectedSubject} />
+    <>
+      <SearchSection onSearch={setSearchQuery} />
+      <FilterSection onDistrictChange={setSelectedDistrict} /* onStartDateChange={setSelectedStartDate} onEndDateChange={setSelectedEndDate} */ onSubjectChange={setSelectedSubject} />
+
+      <div className="alert-subscribe-section">
+        <section className="alert-subscribe">
+          <div className="alertSection">
+            <AlertList alerts={filteredAlerts} />
+          </div>
+
+          <SubscribeSection />
+        </section>
       </div>
-      <div className="alertSubscribeSection">
-        <div className="alertSection">
-          <AlertList alerts={filteredAlerts} />
-        </div>
-        <SubscribeSection />
-      </div>      
-    </div>
+    </>
   )
 }
 

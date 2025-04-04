@@ -1,8 +1,5 @@
 body {
   font-family: "Montréal", Helvetica, Arial, sans-serif;
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.75;
   color: #212529;
   text-align: left;
   background-color: #fff;
@@ -58,14 +55,12 @@ header {
 }
 
 /* SearchSection */
-.searchSection {
-  text-align: left;
-  padding-top: 100px;
-  padding-left: 200px;
-  padding-bottom: 70px;
-  padding-right: 400px;
+
+.searchSection {  
+  padding-left: 200px;  
+  padding-top: 120px;
   background-color: #f1f2f3;
-  width: 100%;
+  padding-bottom: 70px;
 }
 
 .searchSection h1 {
@@ -73,7 +68,7 @@ header {
   margin-bottom: 0;
 }
 
-.searchSection p {
+.searchSection p { 
   font-size: 20px;
   padding: 0px 0px 8px;  
 }
@@ -84,7 +79,7 @@ header {
   align-items: center;
   border: 1px solid #ddd;
   border-radius: 30px;
-  padding: 6px 10px;
+  padding: 8px 10px;
   padding-right: 20px;
   width: 650px;
   background-color: #fff;
@@ -124,9 +119,9 @@ header {
 .filterSection {
   display: flex;
   justify-content: left;
-  padding-top: 10px;
+  padding-top: 15px;
   padding-left: 200px;
-  padding-bottom: 10px;
+  padding-bottom: 15px;
   padding-right: 400px;
   border-bottom: 1px solid #ced4da;
   width: 100%;
@@ -167,16 +162,20 @@ header {
   background-color: rgba(13, 165, 102, 0.1);
 }
 
-/* AlertSubscribeSection */
-.alertSubscribeSection {
+.alert-subscribe-section {  
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  width: 100%;  
-  padding-top: 40px;
+  flex-direction: column;
+}
+
+/* alert-subscribe */
+.alert-subscribe {
   padding-left: 200px;
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+  padding-top: 15px;
   padding-bottom: 40px;
-  gap: 20px;
+  flex-wrap: wrap;
 }
 
 /* SubscribeSection */
@@ -187,7 +186,8 @@ header {
   text-align: left;
   flex: 0 0 325px;
   max-width: 325px;
-  margin-right: 400px;
+  margin-top: 20px
+
 }
 
 .subscribeSection h1 {
@@ -227,11 +227,11 @@ header {
 
 /* AlertSection */
 .alertSection {
-  background-color: #fff;
   display: flex;
   flex-direction: column;
-  max-width: 700px;
+  max-width: 43%;
   flex: 1;
+  padding-right: 130px;
 }
 
 .alert-list {
@@ -239,14 +239,15 @@ header {
   flex-direction: column;
 }
 
-.alert-item {
-  padding: 20px;
-  border-bottom: 1px solid #ced4da;
+.alert {
   color: #212529;
   text-decoration: none;
+  border-bottom: 1px solid #ced4da;
+  padding-left: 25px;
+  padding-right: 25px;
 }
 
-.alert-item h2 {
+.alert h2 {  
   color: #212529;
   font-size: 20px;
   font-weight: 700;
@@ -254,11 +255,11 @@ header {
   margin-bottom: 8px;
 }
 
-.alert-item:hover {
-  color: #212529
+.alert:hover {
+  color: #212529;
 }
 
-.alert-item:hover h2 {
+.alert:hover h2 {
   color: #097d6c;
 }
 
@@ -272,16 +273,17 @@ header {
   font-weight: 700;
   padding: 1px 8px;
   background-color: #DEE2E6;
+  border-radius: 3px;
   width: max-content;
-  margin-bottom: 8px;
 }
 
 .date-time {
   display: flex;
   gap: 15px;
+  margin-bottom: 8px;
 }
 
-.calendar, .time {  
+.calendar, .time {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -300,4 +302,81 @@ header {
   width: 50px;
   transform: scaleX(-1);  
   margin-right: -4px;
+}
+
+/* Page AlertDetail */
+.alert-item {
+  display: flex;
+  flex-direction: column;
+  padding-left: 200px;  
+  padding-top: 120px;
+}
+
+.alert-item-header-subscribe {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  padding-bottom: 40px;
+  gap: 125px;
+}
+
+.alert-item-header-nav {
+  display: flex;
+  flex-direction: column;
+}
+
+.alert-item-nav a {
+  text-decoration: none;
+  color: #637381;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 16px;
+}
+
+.alert-item-nav a:hover {
+  color: #097d6c;
+}
+
+.alert-item-header {
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  max-width: 700px;
+  flex: 1;
+  text-align: left;
+  color: #637381;
+  font-size: 14px;
+  border-bottom: 1px solid #ced4da;
+}
+
+.alert-item-header h1 {
+  color: #212529;
+  font-size: 40px;
+  line-height: 56px;
+  font-weight: 700;
+  margin-bottom: 32px;
+}
+
+.alert-item-header p {
+  color: #637381;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  margin-top: 8px;
+  padding-bottom: 60px;
+}
+
+.alert-item-subscribe {
+  padding-top: 60px;
+}
+
+.alert-item-info {
+  font-family: Arial;
+  font-size: 14px;
+  font-weight: 400;
+  color: #637381;
+  line-height: 30px;
+  padding-top: 25px;
+  padding-bottom: 200px;
 }

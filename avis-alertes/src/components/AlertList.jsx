@@ -24,7 +24,7 @@ function AlertList({ alerts, icon }) {
           const formattedTime = dateFromLink ? toTimeString(dateFromLink) : "Heure inconnue";
 
           return (
-            <Link to={`/alert/${alert._id}`} className="alert-item">
+            <Link to={`/alertDetail/${alert._id}`} className="alert">
               <h2>{alert.titre}</h2>
               <div className="alert-info">
                 <div className="subject">{alert.type}</div>
