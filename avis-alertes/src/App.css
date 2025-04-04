@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   font-family: "Montréal", Helvetica, Arial, sans-serif;
   color: #212529;
@@ -55,12 +59,15 @@ header {
 }
 
 /* SearchSection */
-
 .searchSection {  
-  padding-left: 200px;  
+  padding-left: 200px;
   padding-top: 120px;
-  background-color: #f1f2f3;
   padding-bottom: 70px;
+  width: 100%;
+  background-image: url("https://res.cloudinary.com/villemontreal/image/upload/w_1920,c_lfill/f_auto,dpr_auto,q_auto/v1/portail/background/texture-large-undeground.png");
+  background-size: cover;
+  background-position: 50% 20%;
+  background-repeat: no-repeat;
 }
 
 .searchSection h1 {
@@ -122,7 +129,6 @@ header {
   padding-top: 15px;
   padding-left: 200px;
   padding-bottom: 15px;
-  padding-right: 400px;
   border-bottom: 1px solid #ced4da;
   width: 100%;
 }
@@ -168,14 +174,15 @@ header {
 }
 
 /* alert-subscribe */
-.alert-subscribe {
-  padding-left: 200px;
+.alert-subscribe {  
   display: flex;
   align-items: flex-start;
   width: 100%;
+  padding-left: 200px;
   padding-top: 15px;
   padding-bottom: 40px;
   flex-wrap: wrap;
+  gap: 105px;
 }
 
 /* SubscribeSection */
@@ -186,8 +193,7 @@ header {
   text-align: left;
   flex: 0 0 325px;
   max-width: 325px;
-  margin-top: 20px
-
+  margin-top: 20px;
 }
 
 .subscribeSection h1 {
@@ -229,9 +235,9 @@ header {
 .alertSection {
   display: flex;
   flex-direction: column;
-  max-width: 43%;
+  max-width: 51%;
   flex: 1;
-  padding-right: 130px;
+  padding-right: 30px;
 }
 
 .alert-list {
