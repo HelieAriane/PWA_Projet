@@ -1,15 +1,9 @@
-* {
-  box-sizing: border-box;
-}
-
 body {
   font-family: "Montréal", Helvetica, Arial, sans-serif;
   color: #212529;
-  text-align: left;
   background-color: #fff;
-  margin: 0;
-  padding: 0;
   width: 100%;
+  overflow-x: hidden;
 }
 
 /* Header */
@@ -58,12 +52,37 @@ header {
   margin-right: 20px;
 }
 
+/* Footer */
+footer {
+  width: 100%;
+  background-color: #212529;
+  z-index: 1030;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.footer p {
+  color: #fff;
+  font-size: 14px;
+  margin: 0;
+}
+
+.home * {
+  box-sizing: border-box;
+}
+
 /* SearchSection */
 .searchSection {  
   padding-left: 200px;
   padding-top: 120px;
   padding-bottom: 70px;
-  width: 100%;
   background-image: url("https://res.cloudinary.com/villemontreal/image/upload/w_1920,c_lfill/f_auto,dpr_auto,q_auto/v1/portail/background/texture-large-undeground.png");
   background-size: cover;
   background-position: 50% 20%;
@@ -103,7 +122,6 @@ header {
   outline: none;
   font-size: 16px;
   font-weight: 400;
-  width: 100%;
   color: #212529;
 }
 
@@ -130,7 +148,6 @@ header {
   padding-left: 200px;
   padding-bottom: 15px;
   border-bottom: 1px solid #ced4da;
-  width: 100%;
 }
 
 .filters {
@@ -152,7 +169,6 @@ header {
   outline: none;
   font-size: 14px;
   font-weight: bold;
-  width: auto;
   color: #212529;
 }
 
@@ -171,16 +187,16 @@ header {
 .alert-subscribe-section {  
   display: flex;
   flex-direction: column;
+  width: 100vw;
 }
 
 /* alert-subscribe */
 .alert-subscribe {  
   display: flex;
   align-items: flex-start;
-  width: 100%;
   padding-left: 200px;
   padding-top: 15px;
-  padding-bottom: 40px;
+  padding-bottom: 100px;
   flex-wrap: wrap;
   gap: 105px;
 }
@@ -191,8 +207,7 @@ header {
   padding: 20px;
   border-radius: 10px;
   text-align: left;
-  flex: 0 0 325px;
-  max-width: 325px;
+  max-width: 365px;
   margin-top: 20px;
 }
 
@@ -218,6 +233,7 @@ header {
   display: flex;
   align-items: center;
   border: none;
+  margin-left: -18px;
 }
 
 .subscribeButton:hover {
@@ -245,12 +261,20 @@ header {
   flex-direction: column;
 }
 
+.alert-list-empty {
+  font-size: 16px;
+  line-height: 28px;
+  color: #637381;
+  text-align: center;
+}
+
 .alert {
   color: #212529;
   text-decoration: none;
   border-bottom: 1px solid #ced4da;
   padding-left: 25px;
   padding-right: 25px;
+  padding-bottom: 8px;
 }
 
 .alert h2 {  
@@ -286,7 +310,6 @@ header {
 .date-time {
   display: flex;
   gap: 15px;
-  margin-bottom: 8px;
 }
 
 .calendar, .time {
@@ -311,6 +334,10 @@ header {
 }
 
 /* Page AlertDetail */
+.alert-detail * {
+  box-sizing: border-box;
+}
+
 .alert-item {
   display: flex;
   flex-direction: column;
@@ -320,16 +347,15 @@ header {
 
 .alert-item-header-subscribe {
   display: flex;
-  justify-content: space-between;
   align-items: flex-start;
-  width: 100%;
-  padding-bottom: 40px;
-  gap: 125px;
 }
 
 .alert-item-header-nav {
   display: flex;
   flex-direction: column;
+  max-width: 50%;
+  flex: 1;
+  margin-right: 95px;
 }
 
 .alert-item-nav a {
@@ -345,14 +371,6 @@ header {
 }
 
 .alert-item-header {
-  background-color: #fff;
-  display: flex;
-  flex-direction: column;
-  max-width: 700px;
-  flex: 1;
-  text-align: left;
-  color: #637381;
-  font-size: 14px;
   border-bottom: 1px solid #ced4da;
 }
 
@@ -367,14 +385,15 @@ header {
 .alert-item-header p {
   color: #637381;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 20px;
   margin-top: 8px;
-  padding-bottom: 60px;
+  padding-bottom: 55px;
 }
 
 .alert-item-subscribe {
-  padding-top: 60px;
+  padding-left: 30px;
+  padding-top: 40px;
 }
 
 .alert-item-info {
@@ -383,6 +402,6 @@ header {
   font-weight: 400;
   color: #637381;
   line-height: 30px;
-  padding-top: 25px;
-  padding-bottom: 200px;
+  padding-top: 65px;
+  padding-bottom: 150px;
 }

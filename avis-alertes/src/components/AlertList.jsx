@@ -43,7 +43,9 @@ function AlertList({ alerts, icon }) {
           )
         })
       ) : (
-        <p>Aucune alerte trouvée</p>
+        <div className="alert-list-empty">
+          <p className="alert">Votre recherche ne donne aucun résultat.</p>
+        </div>
       )}
     </div>
   )

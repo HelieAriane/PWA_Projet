@@ -1,6 +1,6 @@
-function Logo({ pictureURL, fallbackText = "Logo ville de montréal"}) {
+function Logo({ picture, fallbackText = "Logo ville de montréal"}) {
   return (
-    <img src={pictureURL} alt={fallbackText} className="logo-image" />
+    <img src={picture} alt={fallbackText} className="logo-image" />
   )   
 }
 
