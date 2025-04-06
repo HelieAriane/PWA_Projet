@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 function SubscribeButton({icon}) {
   const handleSubscribe = () => {
     alert("La fonctionnalité n'est pas encore disponible.")

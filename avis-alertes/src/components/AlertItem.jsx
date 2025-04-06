@@ -51,17 +51,19 @@ function AlertItem() {
             <h1>{alert.titre}</h1>
             <p>Publié le {formattedDate} à {formattedTime}</p>
           </div>
+
+          <div className="alert-item-info">
+            <li>Sujet : {alert.type}</li>
+            <li>À partir du {formattedDateDebut} à {formattedTimeDebut}</li>
+            <li>Retour à la normale prévue le {formattedDateFin} à {formattedTimeFin}</li>
+          </div>
         </div>
 
         <div className="alert-item-subscribe">
           <SubscribeSection></SubscribeSection>
         </div>
       </div>
-      <div className="alert-item-info">
-        <li>Sujet : {alert.type}</li>
-        <li>À partir du {formattedDateDebut} à {formattedTimeDebut}</li>
-        <li>Retour à la normale prévue le {formattedDateFin} à {formattedTimeFin}</li>
-      </div>
+
     </div>
   )
 }

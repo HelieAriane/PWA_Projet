@@ -50,6 +50,7 @@ header {
   font-size: 16px;
   font-weight: bold;
   margin-right: 20px;
+  cursor: pointer;
 }
 
 /* Footer */
@@ -392,14 +393,16 @@ footer {
 .alert-item-header-subscribe {
   display: flex;
   align-items: flex-start;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+  padding-right: 200px;
+  box-sizing: border-box;
 }
 
 .alert-item-header-nav {
-  display: flex;
-  flex-direction: column;
-  max-width: 50%;
+  max-width: 60%;
   flex: 1;
-  margin-right: 95px;
 }
 
 .alert-item-nav a {
@@ -448,4 +451,100 @@ footer {
   line-height: 30px;
   padding-top: 65px;
   padding-bottom: 150px;
+}
+
+@media (max-width: 1200px) {
+  .searchSection,
+  .filterSection,
+  .alert-subscribe {
+    padding-left: 80px; 
+    padding-right: 80px;
+  }
+
+  .header, .footer {
+    padding: 10px 15px;
+  }
+
+  .search-bar {
+    max-width: 600px;
+  }
+
+  .filters {
+    flex-direction: column;
+    gap: 10px;
+    padding-top: 10px;
+  }
+
+  .filter-options, .filter-dates {
+    width: max-content;
+  }
+
+  .alertSection {
+    max-width: 100%;
+  }
+
+  .subscribeSection {
+    max-width: 100%;
+  }
+
+  .alert-item {
+    padding-left: 80px;
+    padding-right: 80px;
+  }
+
+  .alert-item-header-subscribe {
+    padding-right: 0px;
+  }
+  
+  .alert-item-header-nav {
+    max-width: 50%;
+    margin-right: 0;
+  }
+
+  .alert-item-subscribe {
+    max-width: 40%
+  }
+}
+
+@media (max-width: 768px) {
+  .searchSection,
+  .filterSection,
+  .alert-subscribe {
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 40px;
+    padding-right: 30px;
+  }
+
+  .search-bar {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .alert-subscribe {
+    gap: 40px;
+  }
+
+  .subscribeSection {
+    max-width: 100%;
+  }
+
+  .alert-item {
+    padding-left: 40px;
+    padding-right: 30px;
+    padding-bottom: 100px;
+  }
+  
+  .alert-item-header-nav {
+    max-width: 100%;
+  }
+
+  .alert-item-subscribe {
+    max-width: 100%;
+    padding: 0;
+  }
+
+  .alert-item-info {
+    padding-bottom: 20px;
+  }
 }

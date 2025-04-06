@@ -11,10 +11,8 @@ function AlertSection() {
   const [filteredAlerts, setFilteredAlerts] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedDistrict, setSelectedDistrict] = useState("");
-
   const [selectedStartDate, setSelectedStartDate] = useState("");
   const [selectedEndDate, setSelectedEndDate] = useState("");
-
   const [selectedSubject, setSelectedSubject] = useState("");
 
   useEffect(() => {
@@ -48,11 +46,6 @@ function AlertSection() {
     if (selectedStartDate && selectedEndDate) {
       const parseStartDate = parseDate(selectedStartDate);
       const parseEndDate = parseDate(selectedEndDate);
-
-      console.log('selectedStartDate:', selectedStartDate);
-      console.log('parseStartDate:', parseStartDate);
-      console.log('selectedEndDate:', selectedEndDate);
-      console.log('parseEndDate:', parseEndDate);
 
       if (isBefore(parseStartDate, parseEndDate)) {
         alert("Assurez-vous que la date de fin est supérieure à la date de début");
