@@ -11,15 +11,17 @@ function AlertSection() {
   const [filteredAlerts, setFilteredAlerts] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedDistrict, setSelectedDistrict] = useState("");
-  /*   const [selectedStartDate, setSelectedStartDate] = useState("");
-    const [selectedEndDate, setSelectedEndDate] = useState(""); */
+
+  const [selectedStartDate, setSelectedStartDate] = useState("");
+  const [selectedEndDate, setSelectedEndDate] = useState("");
+
   const [selectedSubject, setSelectedSubject] = useState("");
 
   useEffect(() => {
     async function getAlerts() {
       const data = await fetchAlerts();
       console.log('Fetch alerts:', data);
-      console.log('Date:', data[0].date_debut);
+
       if (data.length > 0) {
         setAlerts(data);
         setFilteredAlerts(data)
@@ -43,23 +45,24 @@ function AlertSection() {
       );
     }
 
-    /* const parseStartDate = parseDate(selectedStartDate);
-    const parseEndDate = parseDate(selectedEndDate);
-
     if (selectedStartDate && selectedEndDate) {
-      filtered = filtered.filter((alert) =>
-        isWithin(alert.date_debut, parseStartDate, parseEndDate)
-      );
-    } else if (selectedStartDate) {
-      filtered = filtered.filter((alert) =>
-        isAfter(alert.date_debut, parseStartDate)
-      );
-    } else if (selectedEndDate) {
-      filtered = filtered.filter((alert) =>
-        isBefore(alert.date_debut, parseEndDate)
-      );
+      const parseStartDate = parseDate(selectedStartDate);
+      const parseEndDate = parseDate(selectedEndDate);
+
+      console.log('selectedStartDate:', selectedStartDate);
+      console.log('parseStartDate:', parseStartDate);
+      console.log('selectedEndDate:', selectedEndDate);
+      console.log('parseEndDate:', parseEndDate);
+
+      if (isBefore(parseStartDate, parseEndDate)) {
+        alert("Assurez-vous que la date de fin est supérieure à la date de début");
+      } else {
+        filtered = filtered.filter((alert) =>
+          isWithin(alert.date_debut, parseEndDate, parseStartDate)
+        );
+      }
     }
- */
+
     if (selectedSubject) {
       filtered = filtered.filter((alert) =>
         alert.type === selectedSubject
@@ -67,19 +70,18 @@ function AlertSection() {
     }
 
     setFilteredAlerts(filtered);
-  }, [searchQuery, selectedDistrict, /* selectedStartDate, selectedEndDate, */ selectedSubject, alerts]);
+  }, [searchQuery, selectedDistrict, selectedStartDate, selectedEndDate, selectedSubject, alerts]);
 
   return (
     <>
       <SearchSection onSearch={setSearchQuery} />
-      <FilterSection onDistrictChange={setSelectedDistrict} /* onStartDateChange={setSelectedStartDate} onEndDateChange={setSelectedEndDate} */ onSubjectChange={setSelectedSubject} />
+      <FilterSection onDistrictChange={setSelectedDistrict} onStartDateChange={setSelectedStartDate} onEndDateChange={setSelectedEndDate} onSubjectChange={setSelectedSubject} />
 
       <div className="alert-subscribe-section">
         <section className="alert-subscribe">
           <div className="alertSection">
             <AlertList alerts={filteredAlerts} />
           </div>
-
           <SubscribeSection />
         </section>
       </div>

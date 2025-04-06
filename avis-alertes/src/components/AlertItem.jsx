@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import fetchAlerts from "../data/api";
-import { toDateString, toTimeString } from "../utils/date";
+import { toDateWithDayString, toDateString, toTimeString } from "../utils/date";
 import { extractDateFromUrl } from "./AlertList";
 import SubscribeSection from "../layouts/SubscribeSection";
 import Nav from "../layouts/Nav";
@@ -28,8 +28,16 @@ function AlertItem() {
   }
 
   const dateFromLink = extractDateFromUrl(alert.lien);
-  const formattedDate = dateFromLink ? toDateString(dateFromLink) : "Date inconnue";
+  const formattedDate = dateFromLink ? toDateWithDayString(dateFromLink) : "Date inconnue";
   const formattedTime = dateFromLink ? toTimeString(dateFromLink) : "Heure inconnue";
+
+  const formattedDateDebut = alert.date_debut ? toDateString(alert.date_debut) : "Date inconnue";
+  const formattedTimeDebut = alert.date_debut ? toTimeString(alert.date_debut) : "Heure inconnue";
+
+  const formattedDateFin = alert.date_fin ? toDateString(alert.date_fin) : "Date inconnue";
+  const formattedTimeFin = alert.date_fin ? toTimeString(alert.date_fin) : "Heure inconnue";
+
+  console.log('Formatted dates and times:', formattedDate, formattedTime, formattedDateDebut, formattedTimeDebut, formattedDateFin, formattedTimeFin);
 
   return (
     <div className="alert-item">
@@ -51,8 +59,8 @@ function AlertItem() {
       </div>
       <div className="alert-item-info">
         <li>Sujet : {alert.type}</li>
-        <li>À partir de {alert.date_debut}</li>
-        <li>Retour à la normale prévue à {alert.date_fin}</li>
+        <li>À partir du {formattedDateDebut} à {formattedTimeDebut}</li>
+        <li>Retour à la normale prévue le {formattedDateFin} à {formattedTimeFin}</li>
       </div>
     </div>
   )

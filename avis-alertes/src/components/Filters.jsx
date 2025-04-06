@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 const districts = [
   "Ahuntsic-Cartierville",
   "Anjou",
@@ -32,7 +34,9 @@ const subjects = [
   "Urgence"
 ];
 
-function Filters({ startDate, endDate, onDistrictChange, onStartDateChange, onEndDateChange, onSubjectChange }) {
+function Filters({ onDistrictChange, onStartDateChange, onEndDateChange, onSubjectChange }) {
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
 
   return (
     <div className="filters">
@@ -45,20 +49,16 @@ function Filters({ startDate, endDate, onDistrictChange, onStartDateChange, onEn
         </select>
       </div>
 
-      <div className="filter-options">
-        <form action={""} >
-          <label htmlFor="">
-            De: <input type="date" name="startDate" id="startDate" onChange={(e) => onStartDateChange(e.target.value)} value={startDate}/>
-          </label>
-        </form>
+      <div className="filter-dates">
+        <label htmlFor="">
+          De: <input type="date" name="startDate" id="startDate" onChange={(e) => { setStartDate(e.target.value); onStartDateChange(e.target.value) }} value={startDate} />
+        </label>
       </div>
 
-      <div className="filter-options">
-        <form action={""}>
-          <label htmlFor="">
-            À: <input type="date" name="endDate" id="endDate" onChange={(e) => onEndDateChange(e.target.value)} value={endDate}/>
-          </label>
-        </form>
+      <div className="filter-dates">
+        <label htmlFor="">
+          À: <input type="date" name="endDate" id="endDate" onChange={(e) => { setEndDate(e.target.value); onEndDateChange(e.target.value) }} value={endDate} />
+        </label>
       </div>
 
       <div className="filter-options">

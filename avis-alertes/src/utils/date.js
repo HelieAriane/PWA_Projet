@@ -1,10 +1,10 @@
-export function parseDate(strDate, timezone = 'EDT') {
+export function parseDate(strDate) {
   if (typeof strDate !== 'string') {
-      console.warn("Date received is not a string.");
-      return strDate;
+    console.warn("Date received is not a string: ", strDate);
+    return strDate;
   }
 
-  return new Date(`${strDate.trim()} ${timezone}`);
+  return new Date(`${strDate.trim()}`);
 }
 
 export function compareDate(date1, date2) {
@@ -12,7 +12,7 @@ export function compareDate(date1, date2) {
   const d2 = parseDate(date2);
 
   if (isNaN(d1) || isNaN(d2)) {
-      throw new Error("Invalid date format");
+    throw new Error("Invalid date format");
   }
 
   if (d2 > d1) return 1;
@@ -41,13 +41,22 @@ const Months = {
   fr: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Décembre']
 }
 
-const formatDate = {
+const formatDateWithDay = {
   fr: (d) => `${Days.fr[d.getDay()]} ${d.getDate()} ${Months.fr[d.getMonth()]} ${d.getFullYear()}`
+}
+
+const formatDate = {
+  fr: (d) => `${d.getDate()} ${Months.fr[d.getMonth()]} ${d.getFullYear()}`
+}
+
+export function toDateWithDayString(strDate, lang = 'fr') {
+  const date = parseDate(strDate);
+  return formatDate[lang](date);
 }
 
 export function toDateString(strDate, lang = 'fr') {
   const date = parseDate(strDate);
-  return formatDate[lang](date);
+  return formatDateWithDay[lang](date);
 }
 
 export function toTimeString(strDate, lang = 'fr') {
