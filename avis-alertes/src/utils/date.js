@@ -34,7 +34,7 @@ export function isAfter(date1, date2) {
 }
 
 const Days = {
-  fr: ['Dimande', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi']
+  fr: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi']
 }
 
 const Months = {
@@ -51,12 +51,12 @@ const formatDate = {
 
 export function toDateWithDayString(strDate, lang = 'fr') {
   const date = parseDate(strDate);
-  return formatDate[lang](date);
+  return formatDateWithDay[lang](date);
 }
 
 export function toDateString(strDate, lang = 'fr') {
   const date = parseDate(strDate);
-  return formatDateWithDay[lang](date);
+  return formatDate[lang](date);
 }
 
 export function toTimeString(strDate, lang = 'fr') {

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { toDateString, toTimeString } from "../utils/date";
+import { toDateWithDayString, toTimeString } from "../utils/date";
 import calendarIcon from "../assets/calendar_icon.svg"
 import timeIcon from "../assets/time_icon.svg"
 
@@ -20,7 +20,7 @@ function AlertList({ alerts }) {
       {alerts.length > 0 ? (
         alerts.map((alert) => {
           const dateFromLink = extractDateFromUrl(alert.lien);
-          const formattedDate = dateFromLink ? toDateString(dateFromLink) : "Date inconnue";
+          const formattedDate = dateFromLink ? toDateWithDayString(dateFromLink) : "Date inconnue";
           const formattedTime = dateFromLink ? toTimeString(dateFromLink) : "Heure inconnue";
 
           return (

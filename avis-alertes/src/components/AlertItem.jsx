@@ -28,7 +28,7 @@ function AlertItem() {
   }
 
   const dateFromLink = extractDateFromUrl(alert.lien);
-  const formattedDate = dateFromLink ? toDateWithDayString(dateFromLink) : "Date inconnue";
+  const formattedDate = dateFromLink ? toDateString(dateFromLink) : "Date inconnue";
   const formattedTime = dateFromLink ? toTimeString(dateFromLink) : "Heure inconnue";
 
   const formattedDateDebut = alert.date_debut ? toDateString(alert.date_debut) : "Date inconnue";
@@ -53,9 +53,11 @@ function AlertItem() {
           </div>
 
           <div className="alert-item-info">
-            <li>Sujet : {alert.type}</li>
-            <li>À partir du {formattedDateDebut} à {formattedTimeDebut}</li>
-            <li>Retour à la normale prévue le {formattedDateFin} à {formattedTimeFin}</li>
+            <ul>
+              <li>Sujet : {alert.type}</li>
+              <li>À partir du {formattedDateDebut} à {formattedTimeDebut}</li>
+              <li>Retour à la normale prévue le {formattedDateFin} à {formattedTimeFin}</li>
+            </ul>
           </div>
         </div>
 
