@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const districts = [
   "Ahuntsic-Cartierville",
@@ -34,9 +34,30 @@ const subjects = [
   "Urgence"
 ];
 
-function Filters({ onDistrictChange, onStartDateChange, onEndDateChange, onSubjectChange }) {
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
+function Filters({ 
+  onDistrictChange, 
+  onStartDateChange, 
+  onEndDateChange, 
+  onSubjectChange,
+  selectedDistrict = "",
+  selectedStartDate = "",
+  selectedEndDate = "",
+  selectedSubject = ""
+}) {
+  const [district, setDistrict] = useState(selectedDistrict);
+  const [startDate, setStartDate] = useState(selectedStartDate);
+  const [endDate, setEndDate] = useState(selectedEndDate);
+  const [subject, setSubject] = useState(selectedSubject);
+
+  const districtCount = selectedDistrict ? 1 : 0;	
+  const subjectCount = selectedSubject ? 1 : 0;
+
+  useEffect(() => {
+    setDistrict(selectedDistrict);
+    setStartDate(selectedStartDate);
+    setEndDate(selectedEndDate);
+    setSubject(selectedSubject);
+  }, [selectedDistrict, selectedStartDate, selectedEndDate, selectedSubject]);
 
   return (
     <div className="filters">

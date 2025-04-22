@@ -5,6 +5,7 @@ import SearchSection from "./SearchSection";
 import fetchAlerts from "../data/api";
 import { parseDate, isWithin, isAfter, isBefore } from "../utils/date";
 import SubscribeSection from "./SubscribeSection";
+import ActiveSearchAndFiltersSection from "./ActiveSearchAndFiltersSection";
 
 function AlertSection() {
   const [alerts, setAlerts] = useState([]);
@@ -69,6 +70,25 @@ function AlertSection() {
     <>
       <SearchSection onSearch={setSearchQuery} />
       <FilterSection onDistrictChange={setSelectedDistrict} onStartDateChange={setSelectedStartDate} onEndDateChange={setSelectedEndDate} onSubjectChange={setSelectedSubject} />
+      <ActiveSearchAndFiltersSection
+        activeQuery={searchQuery}
+        activeDistrict={selectedDistrict}
+        activeStartDate={selectedStartDate}
+        activeEndDate={selectedEndDate}
+        activeSubject={selectedSubject}
+        clearQuery={() => setSearchQuery("")}
+        clearDistrict={() => setSelectedDistrict("")}
+        clearStartDate={() => setSelectedStartDate("")}
+        clearEndDate={() => setSelectedEndDate("")}
+        clearSubject={() => setSelectedSubject("")}
+        clearAll={() => {
+          setSearchQuery("");
+          setSelectedDistrict("");
+          setSelectedStartDate("");
+          setSelectedEndDate("");
+          setSelectedSubject("");
+        }}
+      />
 
       <div className="alert-subscribe-section">
         <section className="alert-subscribe">
