@@ -18,13 +18,13 @@ function AlertList({ alerts }) {
   return (
     <div className="alert-list">
       {alerts.length > 0 ? (
-        alerts.map((alert) => {
+        alerts.map((alert, index) => {
           const dateFromLink = extractDateFromUrl(alert.lien);
           const formattedDate = dateFromLink ? toDateWithDayString(dateFromLink) : "Date inconnue";
           const formattedTime = dateFromLink ? toTimeString(dateFromLink) : "Heure inconnue";
 
           return (
-            <Link key={alert._id} to={`/alertDetail/${alert._id}`} className="alert">
+            <Link key={alert.id} to={`/alertDetail/${alert.id}`} className="alert">
               <h2>{alert.titre}</h2>
               <div className="alert-info">
                 <div className="subject">{alert.type}</div>

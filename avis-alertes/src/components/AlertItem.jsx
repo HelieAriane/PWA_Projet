@@ -15,8 +15,8 @@ function AlertItem() {
       const data = await fetchAlerts();
       console.log('Fetch alerts:', data);
 
-      const foundAlert = data.find(item => item._id === Number(id));
-
+      const foundAlert = data.find(item => item.id === Number(id));
+      
       console.log('Found alert:', foundAlert);
       setAlert(foundAlert);
     }

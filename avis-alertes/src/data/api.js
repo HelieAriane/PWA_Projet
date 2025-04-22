@@ -1,40 +1,49 @@
 import { saveInCache } from "../utils/cache";
 
-const API_URL = "https://donnees.montreal.ca/api/3/action/datastore_search"
+const API_URL_JSON = "https://donnees.montreal.ca/api/3/action/datastore_search"
 const RESOURCE_ID = "fc6e5f85-7eba-451c-8243-bdf35c2ab336"
+
+const API_URL_GEOJSON = "https://donnees.montreal.ca/dataset/556c84af-aebf-4ca9-9a9c-2f246601674c/resource/d249e452-46f5-422f-91ae-898c98eea6cc/download/avis-alertes.geojson"
 
 let DATA = [];
 
 async function fetchAlerts(limit = 20) {
-  const url = `${API_URL}?resource_id=${RESOURCE_ID}&limit=${limit}`;
+  //const url = `${API_URL_JSON}?resource_id=${RESOURCE_ID}&limit=${limit}`;
   try {
-      const response = await fetch(url);
-      if (!response.ok) {
-          throw new Error(`Response status: ${response.status}`);
-      }
+    const response = await fetch(API_URL_GEOJSON);
+    if (!response.ok) {
+      throw new Error(`Response status: ${response.status}`);
+    }
 
-      const json = await response.json();
+    const json = await response.json();
 
-      saveInCache('data', json.result.records);
+    const alerts = json.features.map((feature, index) => ({
+      ...feature.properties,
+      geometry: feature.geometry,
+      id: index
+    }));
 
-      DATA = json.result.records;
+    saveInCache('data', alerts);
 
-      return json.result.records;
+    DATA = alerts;
+
+    return alerts.slice(0, limit);
   } catch (error) {
-      console.error(error);
-      return [];
+    console.error(error);
+    return [];
   }
 }
 
-  const API = {
-    fetchAlerts,
-    getAlerts() {
-      return DATA;
-    },
-    find(id) {
-      return DATA.find(item => item.id === id);
-    }
+const API = {
+  fetchAlerts,
+  getAlerts() {
+    return DATA;
+  },
+  find(id) {
+    return DATA.find(item => item.id === id);
   }
+}
+
 
 
 export default fetchAlerts;
