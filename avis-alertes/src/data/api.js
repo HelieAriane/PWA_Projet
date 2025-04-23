@@ -27,7 +27,7 @@ async function fetchAlerts(limit = 20) {
 
     DATA = alerts;
 
-    return alerts.slice(0, limit);
+    return alerts.reverse().slice(0, limit);
   } catch (error) {
     console.error(error);
     return [];
@@ -43,7 +43,5 @@ const API = {
     return DATA.find(item => item.id === id);
   }
 }
-
-
 
 export default fetchAlerts;

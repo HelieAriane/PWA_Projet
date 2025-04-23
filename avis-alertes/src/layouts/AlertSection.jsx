@@ -10,6 +10,7 @@ import ActiveSearchAndFiltersSection from "./ActiveSearchAndFiltersSection";
 function AlertSection() {
   const [alerts, setAlerts] = useState([]);
   const [filteredAlerts, setFilteredAlerts] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedDistrict, setSelectedDistrict] = useState("");
   const [selectedStartDate, setSelectedStartDate] = useState("");
@@ -18,6 +19,7 @@ function AlertSection() {
 
   useEffect(() => {
     async function getAlerts() {
+      setLoading(true);
       const data = await fetchAlerts();
       console.log('Fetch alerts:', data);
 
@@ -25,6 +27,7 @@ function AlertSection() {
         setAlerts(data);
         setFilteredAlerts(data)
       }
+      setLoading(false);
     }
     getAlerts();
   }, []);
@@ -93,7 +96,11 @@ function AlertSection() {
       <div className="alert-subscribe-section">
         <section className="alert-subscribe">
           <div className="alertSection">
-            <AlertList alerts={filteredAlerts} />
+            {loading ? (
+              <div className="loading">Chargement des alertes...</div>
+            ) : (
+              <AlertList alerts={filteredAlerts} />
+            )}
           </div>
           <SubscribeSection />
         </section>
