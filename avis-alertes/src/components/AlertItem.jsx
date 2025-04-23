@@ -5,7 +5,7 @@ import { toDateWithDayString, toDateString, toTimeString } from "../utils/date";
 import { extractDateFromUrl } from "./AlertList";
 import SubscribeSection from "../layouts/SubscribeSection";
 import Nav from "../layouts/Nav";
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import { MapContainer, TileLayer, Polyline } from 'react-leaflet';
 
 function AlertItem() {
   const { id } = useParams();
@@ -46,7 +46,11 @@ function AlertItem() {
 
   console.log('Formatted dates and times:', formattedDate, formattedTime, formattedDateDebut, formattedTimeDebut, formattedDateFin, formattedTimeFin);
 
+  const latLng = alert.geometry?.type === 'LineString' && Array.isArray(alert.geometry.coo) ? alert.geometry.coordinates.map(coord => [coord[1], coord[0]]) : [45.5017, -73.5673]; // Default to Montreal coordinates if not a LineString
   
+  console.log("Latitude and Longitude:", latLng);
+  console.log("Geometry type:", alert.geometry?.type);
+  console.log("Coordinates:", alert.geometry?.coordinates);
 
   return (
     <div className="alert-item">
@@ -71,15 +75,8 @@ function AlertItem() {
 
           <div className="alert-item-map">
             <h1>Emplacement</h1>
-             <MapContainer center={latLng} zoom={12} style={{ height: '100%', width: '100%' }}>
+            <MapContainer center={latLng} zoom={15} style={{ height: '100%', width: '100%' }}>
               <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-              <Marker key={alert.id} position={latLng}>
-                <Popup>
-                  <h2>{alert.titre}</h2>
-                  <p>{alert.description}</p>
-                  <p>Publié le {formattedDate} à {formattedTime}</p>
-                </Popup>
-              </Marker>
             </MapContainer>
           </div>
         </div>

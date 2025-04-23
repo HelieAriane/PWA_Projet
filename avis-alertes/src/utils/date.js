@@ -1,6 +1,6 @@
 export function parseDate(strDate) {
   if (typeof strDate !== 'string') {
-    console.warn("Date received is not a string: ", strDate);
+    //console.warn("Date received is not a string: ", strDate);
     return strDate;
   }
 
