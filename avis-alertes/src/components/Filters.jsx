@@ -34,63 +34,91 @@ const subjects = [
   "Urgence"
 ];
 
-function Filters({ 
-  onDistrictChange, 
-  onStartDateChange, 
-  onEndDateChange, 
+function Filters({
+  onDistrictChange,
+  onStartDateChange,
+  onEndDateChange,
   onSubjectChange,
-  selectedDistrict = "",
+  selectedDistricts = [],
   selectedStartDate = "",
   selectedEndDate = "",
-  selectedSubject = ""
+  selectedSubjects = []
 }) {
-  const [district, setDistrict] = useState(selectedDistrict);
-  const [startDate, setStartDate] = useState(selectedStartDate);
-  const [endDate, setEndDate] = useState(selectedEndDate);
-  const [subject, setSubject] = useState(selectedSubject);
+  const [districtOpen, setDistrictOpen] = useState(false);
+  const [subjectOpen, setSubjectOpen] = useState(false);
 
-  const districtCount = selectedDistrict ? 1 : 0;	
-  const subjectCount = selectedSubject ? 1 : 0;
+  const districtCount = selectedDistricts.length;
+  const subjectCount = selectedSubjects.length;
 
-  useEffect(() => {
-    setDistrict(selectedDistrict);
-    setStartDate(selectedStartDate);
-    setEndDate(selectedEndDate);
-    setSubject(selectedSubject);
-  }, [selectedDistrict, selectedStartDate, selectedEndDate, selectedSubject]);
+  const handleDistrictChange = (district) => {
+    const updatedDistricts = selectedDistricts.includes(district) ? selectedDistricts.filter(d => d !== district) : [...selectedDistricts, district];
+    console.log("Updated districts:", updatedDistricts);
+    onDistrictChange(updatedDistricts);
+  };
+
+  const handleSubjectChange = (subject) => {
+    const updatedSubjects = selectedSubjects.includes(subject) ? selectedSubjects.filter(s => s !== subject) : [...selectedSubjects, subject];
+    console.log("Updated subjects:", updatedSubjects);
+    onSubjectChange(updatedSubjects);
+  };
+
+  const toggleDistrictDropdown = () => {
+    setDistrictOpen(!districtOpen);
+  };
+
+  const toggleSubjectDropdown = () => {
+    setSubjectOpen(!subjectOpen);
+  };
 
   return (
     <div className="filters">
-      <div className="filter-options">
-        <select id="districts" onChange={(e) => onDistrictChange(e.target.value)}>
-          <option value={""}>Arrondissement</option>
-          {districts.map((district, index) => (
-            <option key={index} value={district}>{district}</option>
-          ))}
-        </select>
+      <div className={`filter-options-dropdown ${districtCount > 0 ? "filter-selected" : ""}`}>
+        <div className="filter-options-dropdown-button" onClick={toggleDistrictDropdown}>
+          {districtCount > 0 ? `${districtCount ===1 ? "Arrondissement" : "Arrondissements"} (${districtCount})` : "Arrondissement"}
+          <span className="arrow">{districtOpen ? "⮝" : "⮟"}</span>
+        </div>
+        {districtOpen && (
+          <div className="filter-options-dropdown-list">
+            {districts.map((district, index) => (
+              <div key={index} className="filter-options-dropdown-item">
+                <input type="checkbox" id={`district-${index}`} checked={selectedDistricts.includes(district)} onChange={() => handleDistrictChange(district)} />
+                <label htmlFor={`district-${index}`}>{district}</label>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
 
-      <div className="filter-dates">
+      <div className={`filter-dates ${selectedStartDate ? "filter-selected" : ""}`}>
         <label htmlFor="">
-          De: <input type="date" name="startDate" id="startDate" onChange={(e) => { setStartDate(e.target.value); onStartDateChange(e.target.value) }} value={startDate} />
+          De: <input type="date" name="startDate" id="startDate" onChange={(e) => onStartDateChange(e.target.value)} value={selectedStartDate} />
         </label>
       </div>
 
-      <div className="filter-dates">
+      <div className={`filter-dates ${selectedEndDate ? "filter-selected" : ""}`}>
         <label htmlFor="">
-          À: <input type="date" name="endDate" id="endDate" onChange={(e) => { setEndDate(e.target.value); onEndDateChange(e.target.value) }} value={endDate} />
+          À: <input type="date" name="endDate" id="endDate" onChange={(e) => onEndDateChange(e.target.value)} value={selectedEndDate} />
         </label>
       </div>
 
-      <div className="filter-options">
-        <select id="subjects" onChange={(e) => onSubjectChange(e.target.value)}>
-          <option value={""}>Sujet</option>
-          {subjects.map((subject, index) => (
-            <option key={index} value={subject}>{subject}</option>
-          ))}
-        </select>
+      <div className={`filter-options-dropdown ${subjectCount > 0 ? "filter-selected" : ""}`}>
+        <div className="filter-options-dropdown-button" onClick={toggleSubjectDropdown}>
+          {subjectCount > 0 ? `${subjectCount ===1 ? "Sujet" : "Sujets"} (${subjectCount})` : "Sujet"}
+
+          <span className="arrow">{subjectOpen ? "⮝" : "⮟"}</span>
+        </div>
+        {subjectOpen && (
+          <div className="filter-options-dropdown-list">
+            {subjects.map((subject, index) => (
+              <div key={index} className="filter-options-dropdown-item">
+                <input type="checkbox" id={`subject-${index}`} checked={selectedSubjects.includes(subject)} onChange={() => handleSubjectChange(subject)} />
+                <label htmlFor={`subject-${index}`}>{subject}</label>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
-    </div >
+    </div>
   )
 }
 

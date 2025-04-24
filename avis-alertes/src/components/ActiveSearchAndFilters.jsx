@@ -13,11 +13,21 @@ function ActiveSearchAndFilters({
   clearSubject,
   clearAll
 }) {
-  const hasActiveFilters = activeQuery || activeDistrict || activeStartDate || activeEndDate || activeSubject;
+  const hasActiveFilters = activeQuery || (activeDistrict && activeDistrict.length > 0) || activeStartDate || activeEndDate || (activeSubject && activeSubject.length > 0);
 
   if (!hasActiveFilters) {
     return null;
   }
+
+  const removeDistrict = (district) => {
+    const updatedDistricts = activeDistrict.filter((d) => d !== district);
+    onDistricChange(updatedDistricts);
+  };
+
+  const removeSubject = (subject) => {
+    const updatedSubjects = activeSubject.filter((s) => s !== subject); 
+    onSubjectChange(updatedSubjects);
+  };
 
   const formatDateRange = () => {
     if (activeStartDate && activeEndDate) {
@@ -34,27 +44,47 @@ function ActiveSearchAndFilters({
         {activeQuery && (
           <div className="active-item">
             <span>{activeQuery}</span>
-            <button onClick={clearQuery} className="remove-button">x</button>
+            <button onClick={clearQuery} className="remove-button">✕</button>
           </div>
         )}
-        {activeDistrict && (
-          <div className="active-item">
-            <span>{activeDistrict}</span>
-            <button onClick={clearDistrict} className="remove-button">x</button>
+        {activeDistrict && activeDistrict.map((district, index) => (
+          <div key={`district-${index}`} className="active-item">
+            <span>
+              {district}
+            </span>
+            <button 
+              onClick={() => {
+                const newDistricts = activeDistrict.filter(d => d !== district);
+                clearDistrict(newDistricts);
+              }} 
+              className="remove-button"
+            >
+              ✕
+            </button>
           </div>
-        )}
+        ))}
         {dateRange && (
           <div className="active-item">
             <span>{dateRange}</span>
-            <button onClick={() => { clearStartDate(), clearEndDate() }} className="remove-button">x</button>
+            <button onClick={() => { clearStartDate(), clearEndDate() }} className="remove-button">✕</button>
           </div>
         )}
-        {activeSubject && (
-          <div className="active-item">
-            <span>{activeSubject}</span>
-            <button onClick={clearSubject} className="remove-button">x</button>
+        {activeSubject && activeSubject.map((subject, index) => (
+          <div key={`subject-${index}`} className="active-item">
+            <span>
+              {subject}
+            </span>
+            <button 
+              onClick={() => {
+                const newSubjects = activeSubject.filter(d => d !== subject);
+                clearDistrict(newSubjects);
+              }} 
+              className="remove-button"
+            >
+              ✕
+            </button>
           </div>
-        )}
+        ))}
         <button onClick={clearAll} className="remove-all-button">Tout effacer</button>
       </div>
     </div>

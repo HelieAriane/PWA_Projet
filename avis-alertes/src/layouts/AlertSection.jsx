@@ -12,10 +12,10 @@ function AlertSection() {
   const [filteredAlerts, setFilteredAlerts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedDistrict, setSelectedDistrict] = useState("");
+  const [selectedDistricts, setSelectedDistricts] = useState([]);
   const [selectedStartDate, setSelectedStartDate] = useState("");
   const [selectedEndDate, setSelectedEndDate] = useState("");
-  const [selectedSubject, setSelectedSubject] = useState("");
+  const [selectedSubjects, setSelectedSubjects] = useState([]);
 
   useEffect(() => {
     async function getAlerts() {
@@ -41,9 +41,9 @@ function AlertSection() {
       );
     }
 
-    if (selectedDistrict) {
+    if (selectedDistricts.length > 0) {
       filtered = filtered.filter((alert) =>
-        alert.titre.toLowerCase().includes(selectedDistrict.toLowerCase())
+        selectedDistricts.includes(alert.arrondissement)
       );
     }
 
@@ -60,36 +60,60 @@ function AlertSection() {
       }
     }
 
-    if (selectedSubject) {
+    if (selectedSubjects.length > 0) {
       filtered = filtered.filter((alert) =>
-        alert.type === selectedSubject
+        selectedSubjects.includes(alert.type)
       );
     }
 
-    setFilteredAlerts(filtered);
-  }, [searchQuery, selectedDistrict, selectedStartDate, selectedEndDate, selectedSubject, alerts]);
+    console.log("Filtering with criteria:", {
+      searchQuery,
+      selectedDistricts,
+      selectedStartDate,
+      selectedEndDate,
+      selectedSubjects
+    });
 
+    setFilteredAlerts(filtered);
+  }, [searchQuery, selectedDistricts, selectedStartDate, selectedEndDate, selectedSubjects, alerts]);
+
+  const handleDistrictUpdate = (newDistricts) => {
+    setSelectedDistricts(newDistricts);
+  }
+
+  const handleSubjectUpdate = (newSubjects) => {
+    setSelectedSubjects(newSubjects);
+  };
   return (
     <>
       <SearchSection onSearch={setSearchQuery} />
-      <FilterSection onDistrictChange={setSelectedDistrict} onStartDateChange={setSelectedStartDate} onEndDateChange={setSelectedEndDate} onSubjectChange={setSelectedSubject} />
+      <FilterSection 
+        onDistrictChange={setSelectedDistricts} 
+        onStartDateChange={setSelectedStartDate} 
+        onEndDateChange={setSelectedEndDate} 
+        onSubjectChange={setSelectedSubjects} 
+        selectedDistricts={selectedDistricts}
+        selectedStartDate={selectedStartDate}
+        selectedEndDate={selectedEndDate}
+        selectedSubjects={selectedSubjects}
+      />
       <ActiveSearchAndFiltersSection
         activeQuery={searchQuery}
-        activeDistrict={selectedDistrict}
+        activeDistrict={selectedDistricts}
         activeStartDate={selectedStartDate}
         activeEndDate={selectedEndDate}
-        activeSubject={selectedSubject}
+        activeSubject={selectedSubjects}
         clearQuery={() => setSearchQuery("")}
-        clearDistrict={() => setSelectedDistrict("")}
+        clearDistrict={handleDistrictUpdate}
         clearStartDate={() => setSelectedStartDate("")}
         clearEndDate={() => setSelectedEndDate("")}
-        clearSubject={() => setSelectedSubject("")}
+        clearSubject={handleSubjectUpdate}
         clearAll={() => {
           setSearchQuery("");
-          setSelectedDistrict("");
+          setSelectedDistricts([]);
           setSelectedStartDate("");
           setSelectedEndDate("");
-          setSelectedSubject("");
+          setSelectedSubjects([]);
         }}
       />
 

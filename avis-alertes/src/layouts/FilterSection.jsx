@@ -5,11 +5,14 @@ function FilterSection({
   onStartDateChange,
   onEndDateChange,
   onSubjectChange,
-  selectedDistrict,
+  selectedDistricts = [],
   selectedStartDate,
   selectedEndDate,
-  selectedSubject
+  selectedSubjects = [],
 }) {
+
+  console.log("selectedDistricts in FilterSection:", selectedDistricts); 
+
   return (
     <div className="filterSection">
       <Filters
@@ -17,10 +20,10 @@ function FilterSection({
         onStartDateChange={onStartDateChange}
         onEndDateChange={onEndDateChange}
         onSubjectChange={onSubjectChange}
-        selectedDistrict={selectedDistrict}
+        selectedDistricts={selectedDistricts}
         selectedStartDate={selectedStartDate}
         selectedEndDate={selectedEndDate}
-        selectedSubject={selectedSubject}
+        selectedSubjects={selectedSubjects}
       />
     </div>
   )

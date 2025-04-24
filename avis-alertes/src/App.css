@@ -158,24 +158,58 @@ footer {
   gap: 20px;
 }
 
-.filter-options {
+.filter-options-dropdown {
   border: 1px solid #ddd;
   border-radius: 30px;
   padding: 8px 15px;
   position: relative;
-}
-
-.filter-options input, select {
-  background-color: transparent;
-  border: none;
-  outline: none;
   font-size: 14px;
-  font-weight: bold;
+  font-weight: 700;  
   color: #212529;
   cursor: pointer;
+  background-color: #fff;
+  align-items: center;
 }
 
-.filter-options:focus-within::after {
+.filter-options-dropdown-button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.filter-options-dropdown-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 10px;
+  width: max-content;
+  background-color: #fff;
+  border: none;
+  box-shadow: 0px 8px 32px rgba(0, 0, 0, .1);
+  z-index: 100;
+  padding: 10px 0;
+}
+
+.filter-options-dropdown-item {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  padding-left: 14px;
+  padding-right: 40px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  color: #212529;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.filter-options-dropdown-item label {
+  color: #212529 !important;
+}
+
+.filter-options-dropdown:has(.filter-options-dropdown-list) .filter-options-dropdown-button::before{
   content: "";
   position: absolute;
   top: -5px;
@@ -185,6 +219,39 @@ footer {
   border: 2px solid #097d6c;
   border-radius: 34px;
   background-color: rgba(13, 165, 102, 0.1);
+  z-index: 0;
+}
+
+.filter-options-dropdown-item:hover {
+  background-color: #f7f7f7;
+}
+
+.filter-options-dropdown-item input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-right: 18px;
+  background-color: transparent;
+  cursor: pointer;
+  position: relative;
+}
+
+.filter-options-dropdown-item input[type="checkbox"]:checked {
+  background-color: #097d6c;
+  border: 1px solid #097d6c;
+}
+
+.filter-options-dropdown-item input[type="checkbox"]:checked::after {
+  content: "✓";
+  position: absolute;
+  color: #fff;
+  font-size: 14px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .filter-dates {
@@ -198,7 +265,7 @@ footer {
 
 .filter-dates label {
   font-size: 14px;
-  font-weight: bold;
+  font-weight: 700;
   color: #212529;
 }
 
@@ -231,6 +298,23 @@ footer {
   pointer-events: none;
 }
 
+.filter-selected {
+  background-color: #eefaf8;
+  color: #097d6c;
+}
+
+.filter-selected label {
+  color: #097d6c;
+}
+
+.filter-selected input, select {
+  color: #097d6c;
+}
+
+.filter-selected button {
+  color: #097d6c;
+} 
+
 .alert-subscribe-section {  
   display: flex;
   flex-direction: column;
@@ -241,35 +325,53 @@ footer {
 .active-search-and-filters-section{
   display: flex;
   justify-content: left;
-  padding-top: 15px;
+  padding-top: 18px;
   padding-left: 200px;
   padding-bottom: 15px;
 }
 
 .active-search-and-filters-item{
   display: flex;
-  gap: 20px;
+  gap: 8px;
 }
 
 .active-item {
   border: 1px solid #ddd;
   border-radius: 30px;
-  padding: 8px 15px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  padding-left: 15px;
+  padding-right: 8px;
   position: relative;
   align-items: center;
+  text-align: center;
   font-size: 12px;
-  font-weight: bold;
+  font-weight: 700;
+  line-height: 16px;
   color: #097d6c;
   cursor: pointer;
+  background-color: #eefaf8;
+  display: flex;
+  justify-content: space-between;
+  width: auto
 }
 
 .remove-button {
   background-color: #097d6c;
-  color: #fff;
-  font-size: 12px;
+  color: #ffffff;
+  text-align: center;
+  font-size: 8px;
+  line-height: 10px;
+  font-weight:bolder;
   cursor: pointer;
   border-radius: 20px;
-  padding: 2px 5px;
+  padding: 5px;
+  margin-left: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 18px;
+  height: 18px;
 }
 
 .remove-all-button {
@@ -278,6 +380,16 @@ footer {
   font-size: 12px;
   font-weight: 700;
   cursor: pointer;
+  transition: background-color 0.2s ease;
+  box-shadow: none;
+  outline: none;
+  border: none;
+  transform: none;
+}
+
+.remove-all-button:hover {
+  background-color: #eefaf8;
+  border: none;
 }
 
 /* alert-subscribe */
