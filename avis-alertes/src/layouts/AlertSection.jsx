@@ -66,14 +66,6 @@ function AlertSection() {
       );
     }
 
-    console.log("Filtering with criteria:", {
-      searchQuery,
-      selectedDistricts,
-      selectedStartDate,
-      selectedEndDate,
-      selectedSubjects
-    });
-
     setFilteredAlerts(filtered);
   }, [searchQuery, selectedDistricts, selectedStartDate, selectedEndDate, selectedSubjects, alerts]);
 
