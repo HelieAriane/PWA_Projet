@@ -11,8 +11,6 @@ function FilterSection({
   selectedSubjects = [],
 }) {
 
-  console.log("selectedDistricts in FilterSection:", selectedDistricts); 
-
   return (
     <div className="filterSection">
       <Filters

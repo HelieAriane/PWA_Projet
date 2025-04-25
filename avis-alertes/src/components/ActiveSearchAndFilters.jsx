@@ -30,13 +30,15 @@ function ActiveSearchAndFilters({
   };
 
   const formatDateRange = () => {
+    console.log("Start Date:", activeStartDate, "End Date:", activeEndDate);
     if (activeStartDate && activeEndDate) {
-      return `Du ${toDateString(activeStartDate)} au ${toDateString(activeEndDate)}`;
+      return `Du ${(activeStartDate)} au ${(activeEndDate)}`;
     }
     return "";
   };
 
   const dateRange = formatDateRange();
+  console.log("Formatted date range:", dateRange);
 
   return (
     <div className="active-search-and-filters">
@@ -77,7 +79,7 @@ function ActiveSearchAndFilters({
             <button 
               onClick={() => {
                 const newSubjects = activeSubject.filter(d => d !== subject);
-                clearDistrict(newSubjects);
+                clearSubject(newSubjects);
               }} 
               className="remove-button"
             >
