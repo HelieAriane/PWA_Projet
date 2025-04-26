@@ -22,6 +22,10 @@ function AlertSection() {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
   const totalItems = filteredAlerts.length;
+  const totalPages = Math.ceil(totalItems / itemsPerPage);
+
+  const firstAlertIndex = (currentPage - 1) * itemsPerPage + 1;
+  const lastAlertIndex = Math.min(currentPage * itemsPerPage, totalItems);
 
   useEffect(() => {
     async function getAlerts() {
@@ -92,10 +96,8 @@ function AlertSection() {
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
-    document.documentElement.scrollTop = 0; // Scroll to top on page change
-  };
-
-  const totalPages = Math.ceil(totalItems / itemsPerPage);
+    document.documentElement.scrollTop = 0;
+  };  
 
   return (
     <>
@@ -134,7 +136,7 @@ function AlertSection() {
         <section className="alert-subscribe">
           <div className="alertSection">
             <div className="alert-per-page-and-total">
-              1 à 10 sur {totalItems} résultats
+              {firstAlertIndex} à {lastAlertIndex} sur {totalItems} résultats
             </div>
             {loading ? (
               <div className="loading">Chargement des alertes...</div>

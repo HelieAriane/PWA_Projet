@@ -579,7 +579,6 @@ footer {
   color: #637381;
   display: flex;
   flex-wrap: wrap;
-  gap: 5px;
 }
 
 .pagination-button {
