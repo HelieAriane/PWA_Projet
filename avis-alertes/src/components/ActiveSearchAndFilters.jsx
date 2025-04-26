@@ -30,7 +30,6 @@ function ActiveSearchAndFilters({
   };
 
   const formatDateRange = () => {
-    console.log("Start Date:", activeStartDate, "End Date:", activeEndDate);
     if (activeStartDate && activeEndDate) {
       return `Du ${(activeStartDate)} au ${(activeEndDate)}`;
     }
@@ -38,7 +37,6 @@ function ActiveSearchAndFilters({
   };
 
   const dateRange = formatDateRange();
-  console.log("Formatted date range:", dateRange);
 
   return (
     <div className="active-search-and-filters">

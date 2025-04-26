@@ -15,11 +15,9 @@ function AlertItem() {
   useEffect(() => {
     async function fetchData() {
       const data = await fetchAlerts();
-      console.log('Fetch alerts:', data);
 
       const foundAlert = data.find(item => item.id === Number(id));
 
-      console.log('Found alert:', foundAlert);
       setAlert(foundAlert);
       setLoading(false);
     }
@@ -43,8 +41,6 @@ function AlertItem() {
 
   const formattedDateFin = alert.date_fin ? toDateString(alert.date_fin) : "Date inconnue";
   const formattedTimeFin = alert.date_fin ? toTimeString(alert.date_fin) : "Heure inconnue";
-
-  console.log('Formatted dates and times:', formattedDate, formattedTime, formattedDateDebut, formattedTimeDebut, formattedDateFin, formattedTimeFin);
 
   return (
     <div className="alert-item">

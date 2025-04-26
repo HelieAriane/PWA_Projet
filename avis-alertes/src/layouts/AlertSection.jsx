@@ -21,11 +21,6 @@ function AlertSection() {
   const [displayedAlerts, setDisplayedAlerts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
-  const totalItems = filteredAlerts.length;
-  const totalPages = Math.ceil(totalItems / itemsPerPage);
-
-  const firstAlertIndex = (currentPage - 1) * itemsPerPage + 1;
-  const lastAlertIndex = Math.min(currentPage * itemsPerPage, totalItems);
 
   useEffect(() => {
     async function getAlerts() {
@@ -52,9 +47,12 @@ function AlertSection() {
     }
 
     if (selectedDistricts.length > 0) {
-      filtered = filtered.filter((alert) =>
-        selectedDistricts.includes(alert.arrondissement)
-      );
+      filtered = filtered.filter((alert) =>{
+        const alertTitle = alert.titre.toLowerCase();
+        return selectedDistricts.some((district) =>
+          alertTitle.includes(district.toLowerCase())
+        );
+      });
     }
 
     if (selectedStartDate && selectedEndDate) {
@@ -77,6 +75,7 @@ function AlertSection() {
     }
 
     setFilteredAlerts(filtered);
+    
     setCurrentPage(1);
   }, [searchQuery, selectedDistricts, selectedStartDate, selectedEndDate, selectedSubjects, alerts]);
 
@@ -84,7 +83,7 @@ function AlertSection() {
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
     setDisplayedAlerts(filteredAlerts.slice(startIndex, endIndex));
-  }, [filteredAlerts, currentPage, itemsPerPage]);
+  }, [filteredAlerts, currentPage]);
 
   const handleDistrictUpdate = (newDistricts) => {
     setSelectedDistricts(newDistricts);
@@ -97,7 +96,13 @@ function AlertSection() {
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
     document.documentElement.scrollTop = 0;
-  };  
+  };
+
+  const totalItems = filteredAlerts.length;
+  const totalPages = Math.ceil(totalItems / itemsPerPage);
+
+  const firstAlertIndex = totalItems === 0 ? 0: (currentPage - 1) * itemsPerPage + 1;
+  const lastAlertIndex = Math.min(currentPage * itemsPerPage, totalItems);
 
   return (
     <>
