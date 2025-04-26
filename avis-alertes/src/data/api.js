@@ -7,7 +7,7 @@ const API_URL_GEOJSON = "https://donnees.montreal.ca/dataset/556c84af-aebf-4ca9-
 
 let DATA = [];
 
-async function fetchAlerts(limit = 20) {
+async function fetchAlerts() {
   //const url = `${API_URL_JSON}?resource_id=${RESOURCE_ID}&limit=${limit}`;
   try {
     const response = await fetch(API_URL_GEOJSON);
@@ -27,7 +27,7 @@ async function fetchAlerts(limit = 20) {
 
     DATA = alerts;
 
-    return alerts.reverse().slice(0, limit);
+    return alerts.reverse();
   } catch (error) {
     console.error(error);
     return [];

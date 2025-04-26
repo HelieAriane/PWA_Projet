@@ -392,13 +392,22 @@ footer {
   border: none;
 }
 
+/* total-alerts-per-page */
+.alert-per-page-and-total {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #ced4da;
+}
+
 /* alert-subscribe */
 .alert-subscribe {  
   display: flex;
   align-items: flex-start;
   padding-left: 200px;
   padding-top: 15px;
-  padding-bottom: 100px;
+  padding-bottom: 75px;
   flex-wrap: wrap;
   gap: 105px;
 }
@@ -533,6 +542,32 @@ footer {
   width: 50px;
   transform: scaleX(-1);  
   margin-right: -4px;
+}
+
+/* Pagination */
+.pagination-container {
+  padding-top: 30px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: #637381;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.pagination-button {
+  width: 40px;
+  height: 40px;
+  background-color: transparent;
+  color: #097d6c;
+  border: 1px solid #ced4da;
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Page AlertDetail */

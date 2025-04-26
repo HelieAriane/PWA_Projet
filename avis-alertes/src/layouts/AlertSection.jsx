@@ -6,6 +6,7 @@ import fetchAlerts from "../data/api";
 import { parseDate, isWithin, isAfter, isBefore } from "../utils/date";
 import SubscribeSection from "./SubscribeSection";
 import ActiveSearchAndFiltersSection from "./ActiveSearchAndFiltersSection";
+import PaginationSection from "./PaginationSection";
 
 function AlertSection() {
   const [alerts, setAlerts] = useState([]);
@@ -16,6 +17,11 @@ function AlertSection() {
   const [selectedStartDate, setSelectedStartDate] = useState("");
   const [selectedEndDate, setSelectedEndDate] = useState("");
   const [selectedSubjects, setSelectedSubjects] = useState([]);
+
+  const [displayedAlerts, setDisplayedAlerts] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
+  const totalItems = filteredAlerts.length;
 
   useEffect(() => {
     async function getAlerts() {
@@ -67,7 +73,14 @@ function AlertSection() {
     }
 
     setFilteredAlerts(filtered);
+    setCurrentPage(1);
   }, [searchQuery, selectedDistricts, selectedStartDate, selectedEndDate, selectedSubjects, alerts]);
+
+  useEffect(() => {
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    setDisplayedAlerts(filteredAlerts.slice(startIndex, endIndex));
+  }, [filteredAlerts, currentPage, itemsPerPage]);
 
   const handleDistrictUpdate = (newDistricts) => {
     setSelectedDistricts(newDistricts);
@@ -76,14 +89,22 @@ function AlertSection() {
   const handleSubjectUpdate = (newSubjects) => {
     setSelectedSubjects(newSubjects);
   };
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+    document.documentElement.scrollTop = 0; // Scroll to top on page change
+  };
+
+  const totalPages = Math.ceil(totalItems / itemsPerPage);
+
   return (
     <>
       <SearchSection onSearch={setSearchQuery} />
-      <FilterSection 
-        onDistrictChange={setSelectedDistricts} 
-        onStartDateChange={setSelectedStartDate} 
-        onEndDateChange={setSelectedEndDate} 
-        onSubjectChange={setSelectedSubjects} 
+      <FilterSection
+        onDistrictChange={setSelectedDistricts}
+        onStartDateChange={setSelectedStartDate}
+        onEndDateChange={setSelectedEndDate}
+        onSubjectChange={setSelectedSubjects}
         selectedDistricts={selectedDistricts}
         selectedStartDate={selectedStartDate}
         selectedEndDate={selectedEndDate}
@@ -112,10 +133,23 @@ function AlertSection() {
       <div className="alert-subscribe-section">
         <section className="alert-subscribe">
           <div className="alertSection">
+            <div className="alert-per-page-and-total">
+              1 à 10 sur {totalItems} résultats
+            </div>
             {loading ? (
               <div className="loading">Chargement des alertes...</div>
             ) : (
-              <AlertList alerts={filteredAlerts} />
+              <div>
+                <AlertList alerts={displayedAlerts} />
+                {filteredAlerts.length > 0 && (
+                  <PaginationSection
+                    currentPage={currentPage}
+                    totalPages={totalPages}
+                    onPageChange={handlePageChange}
+                    totalItems={totalItems}
+                  />
+                )}
+              </div>
             )}
           </div>
           <SubscribeSection />
