@@ -179,6 +179,7 @@ footer {
   color: #212529;
   cursor: pointer;
   background-color: #fff;
+  display: flex;
   align-items: center;
 }
 
@@ -188,6 +189,23 @@ footer {
   align-items: center;
   gap: 10px;
   width: 100%;
+}
+
+.arrow {
+  display: inline-block;
+  width: 7.5px;
+  height: 7.5px;
+  border-right: 2px solid black;
+  border-bottom: 2px solid black;
+  transform: rotate(45deg);
+  transform-origin: center;
+  transition: transform 0.3s ease;
+  margin-left: 8px;
+  margin-right: 8px;
+}
+
+.arrow.up {
+  transform: rotate(-135deg);
 }
 
 .filter-options-dropdown-list {
@@ -273,16 +291,19 @@ footer {
   display: flex;
   align-items: center;
   position: relative;
-  flex-wrap: wrap;
 }
 
 .filter-dates label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
   font-size: 14px;
   font-weight: 700;
   color: #212529;
+  width: 100%;
 }
 
-.filter-dates input, select {
+.filter-dates input {
   background-color: transparent;
   border: none;
   outline: none;
@@ -291,6 +312,8 @@ footer {
   color: #212529;
   cursor: pointer;
   font-family: "Montréal", Helvetica, Arial, sans-serif;
+  width: 100%;
+  padding-right: 4px;
 }
 
 .filter-dates input[type="date"]::-webkit-calendar-picker-indicator {

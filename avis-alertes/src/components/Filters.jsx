@@ -75,7 +75,7 @@ function Filters({
       <div className={`filter-options-dropdown ${districtCount > 0 ? "filter-selected" : ""}`}>
         <div className="filter-options-dropdown-button" onClick={toggleDistrictDropdown}>
           {districtCount > 0 ? `${districtCount ===1 ? "Arrondissement" : "Arrondissements"} (${districtCount})` : "Arrondissement"}
-          <span className="arrow">{districtOpen ? "⮝" : "⮟"}</span>
+          <span className={`arrow ${districtOpen ? "up" : ""}`}></span>
         </div>
         {districtOpen && (
           <div className="filter-options-dropdown-list">
@@ -104,8 +104,7 @@ function Filters({
       <div className={`filter-options-dropdown ${subjectCount > 0 ? "filter-selected" : ""}`}>
         <div className="filter-options-dropdown-button" onClick={toggleSubjectDropdown}>
           {subjectCount > 0 ? `${subjectCount ===1 ? "Sujet" : "Sujets"} (${subjectCount})` : "Sujet"}
-
-          <span className="arrow">{subjectOpen ? "⮝" : "⮟"}</span>
+          <span className={`arrow ${subjectOpen ? "up" : ""}`}></span>
         </div>
         {subjectOpen && (
           <div className="filter-options-dropdown-list">
