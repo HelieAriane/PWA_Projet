@@ -303,7 +303,7 @@ footer {
   width: 100%;
 }
 
-.filter-dates input, select {
+.filter-dates input {
   background-color: transparent;
   border: none;
   outline: none;
