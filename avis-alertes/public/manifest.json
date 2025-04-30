@@ -2,7 +2,7 @@
     "name": "Avis Alertes",
     "short_name": "Avis Alertes",
     "description": "Application pour les avis et alertes de Montréal",
-    "start_url": "/index.html",
+    "start_url": "/",
     "display": "standalone",
     "background_color": "#ffffff",
     "theme_color": "#000000",
