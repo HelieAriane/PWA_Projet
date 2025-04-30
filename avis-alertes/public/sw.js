@@ -1,13 +1,15 @@
 const CACHE_VERSION = 'v1';
 const CACHE_NAME = `avis-alertes-cache-${CACHE_VERSION}`;
 const STATIC_CACHE = `avis-alertes-static-${CACHE_VERSION}`;
+const MAP_TILE_CACHE = `avis-alertes-map-tiles-${CACHE_VERSION}`;
+
 
 // Assets to cache - Vite-specific paths
 const urlsToCache = [
   '/',
   '/index.html',
-  '/assets/index-DG4cteaM.js',
-  '/assets/index-DxzjIPBo.css',
+  '/assets/index-DniJ3npD.js',
+  '/assets/index-9o2OHv0C.css',
   '/assets/logo_footer-BnavPvK6.svg',
   '/assets/logo_header-4dMxm99W.svg',
   '/manifest.json',
@@ -34,7 +36,7 @@ self.addEventListener('activate', event => {
       return Promise.all(
         cacheNames
           .filter(name => name.startsWith('avis-alertes-'))
-          .filter(name => name !== STATIC_CACHE && name !== CACHE_NAME)
+          .filter(name => ![STATIC_CACHE, CACHE_NAME, MAP_TILE_CACHE].includes(name))
           .map(name => caches.delete(name))
       );
     }).then(() => self.clients.claim())
