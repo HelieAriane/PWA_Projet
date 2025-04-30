@@ -138,5 +138,9 @@
             "src": "/icons/ios/1024.png",
             "sizes": "1024x1024"
         }
-    ]
+    ],
+    "serviceworker" : {
+        "src" : "/sw.js",
+        "scope" : "/"
+    }
 }
