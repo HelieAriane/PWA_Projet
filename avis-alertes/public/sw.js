@@ -46,7 +46,11 @@ self.addEventListener('activate', event => {
 // Fetch event - implement cache-first with network fallback
 self.addEventListener('fetch', event => {
   const url = new URL(event.request.url)
+<<<<<<< HEAD
   if (!(url.protocol === 'http:' || url.protocol === 'https:')) {
+=======
+  if (!(url.protocole === 'http:' || url.protocole === 'https:')) {
+>>>>>>> 05acbad20990d6324c56872ba743fa1b4682f226
     return;
   }
 
