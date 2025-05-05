@@ -4,7 +4,7 @@ import './index.css'
 import App from './App.jsx'
 
 function registerSW() {
-  if ('serviceWorker' in navigator) {
+  if ('serviceWorker' in navigator && import.meta.en.PROD) {
     window.addEventListener('load', () => {
       navigator.serviceWorker.register('/sw.js')
         .then((registration) => {
