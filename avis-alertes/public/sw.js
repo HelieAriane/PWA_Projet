@@ -45,6 +45,11 @@ self.addEventListener('activate', event => {
 
 // Fetch event - implement cache-first with network fallback
 self.addEventListener('fetch', event => {
+  const url = new URL(event.request.url)
+  if (!(url.protocole === 'http:' || url.protocole === 'https:')) {
+    return;
+  }
+
   event.respondWith(
     caches.match(event.request)
       .then(cachedResponse => {
@@ -63,8 +68,7 @@ self.addEventListener('fetch', event => {
             const responseToCache = response.clone();
 
             // Only cache GET requests from http/https (évite chrome extention)
-            if (event.request.method === 'GET' &&
-              event.request.url.startsWith('http')) {
+            if (event.request.method === 'GET') {
               // Cache the successful response
               caches.open(CACHE_NAME)
                 .then(cache => cache.put(event.request, responseToCache));
