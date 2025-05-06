@@ -8,7 +8,7 @@ const MAP_TILE_CACHE = `avis-alertes-map-tiles-${CACHE_VERSION}`;
 const urlsToCache = [
   '/',
   '/index.html',
-  '/assets/index-CtvhEjF5.js',
+  '/assets/index-BiP4Xp2U.js',
   '/assets/index-9o2OHv0C.css',
   '/assets/logo_footer-BnavPvK6.svg',
   '/assets/logo_header-4dMxm99W.svg',
