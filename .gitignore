@@ -1,0 +1,31 @@
+# === Logs & debug ===
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# === OS / IDE ===
+.DS_Store
+Thumbs.db
+.vscode/
+!.vscode/extensions.json
+.idea/
+*.suo
+*.sw?
+*.ntvs*
+*.njsproj
+*.sln
+
+# === Environments ===
+.env
+.env.*.local
+
+# === Git leftovers ===
+*.orig
+*.rej
+
+# === Docs temp ===
+docs/*.pdf~
