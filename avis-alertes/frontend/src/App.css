@@ -768,6 +768,12 @@ select {
   cursor: not-allowed;
 }
 
+.pagination-button.active {
+  background-color: #097d6c;
+  color: white;
+  border-color: #097d6c;
+}
+
 /* Page AlertDetail */
 .alert-detail * {
   box-sizing: border-box;
