@@ -3,7 +3,8 @@ import { saveInCache } from "../utils/cache";
 const API_URL_JSON = "https://donnees.montreal.ca/api/3/action/datastore_search"
 const RESOURCE_ID = "fc6e5f85-7eba-451c-8243-bdf35c2ab336"
 
-const API_URL_BACKEND = "http://localhost:3000/api/alerts";
+// On lit l'URL du backend à partir d'une variable d’environnement Vite
+const API_URL_BACKEND = import.meta.env.VITE_BACKEND_URL + "/api/alerts";
 
 let DATA = [];
 
