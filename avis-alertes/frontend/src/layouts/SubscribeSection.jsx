@@ -4,7 +4,7 @@ import SubscriptionModal from "../components/SubscriptionModal";
 import arrowIcon from "../assets/arrow_icon.svg";
 import { useEffect } from "react";
 
-const VAPID_PUBLIC_KEY = "BPRvd5Guryvbw3eMSZvId6edGBx3_VKRKmEsIMLK3rKTxPggSzL4KilmdCIsDXOOEP-B8dN-eMsXoCfNdu7qbL0";
+const VAPID_PUBLIC_KEY = "BIS--CaWzFF64lzLaOFuZVsdDnGTiq52_ZMo7c4w2UQ8FQbsQOPJ1aay4oP1dFx_-dtC-JJ7vNTg-BcOxRKSRsc";
 
 function SubscribeSection() {
   const [showModal, setShowModal] = useState(false);
