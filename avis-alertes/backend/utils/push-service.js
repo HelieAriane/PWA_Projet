@@ -1,8 +1,11 @@
 import webpush from 'web-push';
+import dotenv from 'dotenv';
 
-const publicKey = "BPRvd5Guryvbw3eMSZvId6edGBx3_VKRKmEsIMLK3rKTxPggSzL4KilmdCIsDXOOEP-B8dN-eMsXoCfNdu7qbL0";
-const privateKey = "LXhW9vpIDNUh8cEJYgvvGNYJs1LGJdOii3Nyxbjc5mk";
-const contactEmail = "mailto:arianehelie@gmail.com";
+dotenv.config();
+
+const publicKey = process.env.VAPID_PUBLIC_KEY;
+const privateKey = process.env.VAPID_PRIVATE_KEY;
+const contactEmail = process.env.VAPID_CONTACT_EMAIL;
 
 webpush.setVapidDetails(contactEmail, publicKey, privateKey);
 
