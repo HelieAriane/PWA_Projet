@@ -1,10 +1,15 @@
 export function parseDate(strDate) {
-  if (typeof strDate !== 'string') {
-    //console.warn("Date received is not a string: ", strDate);
-    return strDate;
+  if (!(strDate instanceof Date) && typeof strDate !== 'string') {
+    throw new Error("Invalid date input. Must be a Date or a string.");
   }
 
-  return new Date(`${strDate.trim()}`);
+  const date = strDate instanceof Date ? strDate : new Date(strDate.trim());
+
+  if (isNaN(date.getTime())) {
+    throw new Error(`Invalid date format: "${strDate}"`);
+  }
+
+  return date;
 }
 
 export function compareDate(date1, date2) {
@@ -15,22 +20,22 @@ export function compareDate(date1, date2) {
     throw new Error("Invalid date format");
   }
 
-  if (d2 > d1) return 1;
-  if (d2 < d1) return -1;
+  if (d1 > d2) return 1;
+  if (d1 < d2) return -1;
 
   return 0;
 }
 
-export function isWithin(target, start, end) {
-  return compareDate(start, target) <= 0 && compareDate(target, end) <= 0;
-}
-
 export function isBefore(date1, date2) {
-  return compareDate(date1, date2) <= 0;
+  return compareDate(date1, date2) < 0;
 }
 
 export function isAfter(date1, date2) {
-  return compareDate(date1, date2) >= 0;
+  return compareDate(date1, date2) > 0;
+}
+
+export function isWithin(target, start, end) {
+  return compareDate(start, target) <= 0 && compareDate(target, end) <= 0;
 }
 
 const Days = {

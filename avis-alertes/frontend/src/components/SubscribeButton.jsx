@@ -1,11 +1,7 @@
-function SubscribeButton({icon}) {
-  const handleSubscribe = () => {
-    alert("La fonctionnalité n'est pas encore disponible.")
-  };
-
+function SubscribeButton({icon, onClick}) {
   return (
     <div>
-      <button className="subscribeButton" onClick={handleSubscribe}>M'abonner
+      <button className="subscribeButton" onClick={onClick}>M'abonner
         <img src={icon} className="arrow-icon" />
       </button>
     </div>

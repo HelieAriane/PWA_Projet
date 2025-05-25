@@ -59,11 +59,11 @@ function AlertSection() {
       const parseStartDate = parseDate(selectedStartDate);
       const parseEndDate = parseDate(selectedEndDate);
 
-      if (isBefore(parseStartDate, parseEndDate)) {
+      if (isAfter(parseStartDate, parseEndDate)) {
         alert("Assurez-vous que la date de fin est supérieure à la date de début");
       } else {
         filtered = filtered.filter((alert) =>
-          isWithin(alert.date_debut, parseEndDate, parseStartDate)
+          isWithin(alert.date_debut, parseStartDate, parseEndDate)
         );
       }
     }
