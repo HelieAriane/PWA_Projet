@@ -6,11 +6,6 @@ dist/
 .env
 .env.*.local
 
-# === Build outputs ===
-service-worker.js
-sw.js
-manifest.json
-
 # === Testing ===
 coverage/
 *.lcov
