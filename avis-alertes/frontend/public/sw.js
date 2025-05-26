@@ -8,7 +8,7 @@ const BACKEND_URL = "https://avis-alertes-arianehelie.onrender.com";
 const urlsToCache = [
   '/',
   '/index.html',
-  '/assets/index-ct8bexoe.js',
+  '/assets/index-DLu9koW2.js',
   '/assets/index-DFxTzgur.css',
   '/assets/logo_footer-BnavPvK6.svg',
   '/assets/logo_header-4dMxm99W.svg',
