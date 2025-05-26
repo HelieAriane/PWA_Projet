@@ -175,13 +175,6 @@ npm run dev
 ```
 L'application sera accessible à l'adresse http://localhost:5173
 
-#### 3.3 Build de production
-Pour créer une version optimisée pour la production :
-```bash
-npm run build
-```
-Les fichiers générés se trouveront dans le dossier `dist/`
-
 ### 4. Configuration de MongoDB (MongoDB local)
 1. Installez MongoDB localement si n'est pas déjà fait.
 2. Démarrez le service MongoDB
