@@ -2,14 +2,14 @@ const CACHE_VERSION = 'v1';
 const CACHE_NAME = `avis-alertes-cache-${CACHE_VERSION}`;
 const STATIC_CACHE = `avis-alertes-static-${CACHE_VERSION}`;
 const MAP_TILE_CACHE = `avis-alertes-map-tiles-${CACHE_VERSION}`;
-
+const BACKEND_URL = "https://avis-alertes-arianehelie.onrender.com";
 
 // Assets to cache - Vite-specific paths
 const urlsToCache = [
   '/',
   '/index.html',
-  '/assets/index-BEIHN9NO.js',
-  '/assets/index-Cx7ILYvY.css',
+  '/assets/index-DLu9koW2.js',
+  '/assets/index-DFxTzgur.css',
   '/assets/logo_footer-BnavPvK6.svg',
   '/assets/logo_header-4dMxm99W.svg',
   '/manifest.json',
