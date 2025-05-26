@@ -3,9 +3,17 @@ import cors from 'cors';
 import routes from './routes/push-routes.js';
 import './db/connect.js'
 
-const allowedOrigins = ['http://localhost:5173', 'http://localhost:5174', 'http://localhost:5175', 'https://avis-alertes-arianehelie.netlify.app'];
+const allowedOrigins = [
+  'http://localhost:5173', 
+  'http://localhost:5174', 
+  'http://localhost:5175',
+  'http://localhost:4173',
+  'https://avis-alertes-arianehelie.onrender.com',
+  'https://avis-alertes-arianehelie.netlify.app'
+];
 
 const app = express();
+
 app.use(cors({
   origin: (origin, callback) => {
     if (!origin || allowedOrigins.includes(origin)) {
@@ -17,6 +25,7 @@ app.use(cors({
   methods: ['GET', 'POST'],
   credentials: true
 }));
+
 app.use(express.json());
 
 app.get('/', (req, res) => {
