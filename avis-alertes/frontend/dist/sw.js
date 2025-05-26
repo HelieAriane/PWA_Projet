@@ -92,12 +92,21 @@ self.addEventListener('fetch', event => {
 }); 
 
 self.addEventListener('push', event => {
-    const data = event.data.json();
-    console.log('Push event received:', data);
-    self.registration.showNotification(data.title, {
-        body: data.body,
-        icon: '/icons/android/android-launchericon-192-192.png',
-    });
+    let data = { title: 'Notification', body: 'Vous avez une nouvelle alerte.' };
+
+  try {
+    if (event.data) {
+      data = event.data.json(); // essaie de parser en JSON
+    }
+  } catch (e) {
+    // Si parsing échoue, utilise texte brut
+    data.body = event.data.text();
+  }
+
+  self.registration.showNotification(data.title, {
+    body: data.body,
+    icon: '/icons/android/android-launchericon-192-192.png',
+  });
 
     self.clients.matchAll().then(clients => {
         clients.forEach(client => {
