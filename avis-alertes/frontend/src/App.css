@@ -892,8 +892,8 @@ select {
 .error {
   font-size: 24px;
   font-weight: 700;
-  padding-left: 200px;
-  padding-top: 200px;
+  padding-left: 20px;
+  padding-top: 20px;
   flex: 1;
 }
 

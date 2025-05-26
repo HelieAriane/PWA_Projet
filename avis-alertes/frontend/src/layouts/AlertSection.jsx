@@ -32,7 +32,7 @@ function AlertSection() {
         setAlerts(data);
         setFilteredAlerts(data)
       }
-      setLoading(false);
+      setLoading(true);
     }
     getAlerts();
   }, []);
