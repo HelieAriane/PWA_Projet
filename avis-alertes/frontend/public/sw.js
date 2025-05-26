@@ -2,7 +2,7 @@ const CACHE_VERSION = 'v1';
 const CACHE_NAME = `avis-alertes-cache-${CACHE_VERSION}`;
 const STATIC_CACHE = `avis-alertes-static-${CACHE_VERSION}`;
 const MAP_TILE_CACHE = `avis-alertes-map-tiles-${CACHE_VERSION}`;
-
+const BACKEND_URL = "https://avis-alertes-arianehelie.onrender.com";
 
 // Assets to cache - Vite-specific paths
 const urlsToCache = [
@@ -47,6 +47,26 @@ self.addEventListener('activate', event => {
 self.addEventListener('fetch', event => {
   const url = new URL(event.request.url)
   if (!(url.protocol === 'http:' || url.protocol === 'https:')) {
+    return;
+  }
+
+  if (url.pathname.startsWith('/api/alerts')) {
+    event.respondWith(
+      fetch(`${BACKEND_URL}${url.pathname}${url.search}`, {
+        method: event.request.method,
+        headers: event.request.headers,
+        // Optionnel : si POST, body à gérer
+        // body: event.request.body,
+        mode: 'cors',
+        credentials: 'same-origin',
+      }).then(response => {
+        if (!response.ok) throw new Error('Network response was not ok');
+        return response;
+      }).catch(err => {
+        console.error('Fetch failed:', err);
+        return new Response('Service Unavailable', { status: 503, statusText: 'Service Unavailable' });
+      })
+    );
     return;
   }
 

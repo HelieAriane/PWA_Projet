@@ -50,6 +50,26 @@ self.addEventListener('fetch', event => {
     return;
   }
 
+  if (url.pathname.startsWith('/api/alerts')) {
+    event.respondWith(
+      fetch(`${BACKEND_URL}${url.pathname}${url.search}`, {
+        method: event.request.method,
+        headers: event.request.headers,
+        // Optionnel : si POST, body à gérer
+        // body: event.request.body,
+        mode: 'cors',
+        credentials: 'same-origin',
+      }).then(response => {
+        if (!response.ok) throw new Error('Network response was not ok');
+        return response;
+      }).catch(err => {
+        console.error('Fetch failed:', err);
+        return new Response('Service Unavailable', { status: 503, statusText: 'Service Unavailable' });
+      })
+    );
+    return;
+  }
+
   event.respondWith(
     caches.match(event.request)
       .then(cachedResponse => {
