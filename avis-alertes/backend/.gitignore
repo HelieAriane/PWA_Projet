@@ -1,6 +1,5 @@
 # === Node.js / React ===
 node_modules/
-dist/
 .vite/
 .cache/
 .env
