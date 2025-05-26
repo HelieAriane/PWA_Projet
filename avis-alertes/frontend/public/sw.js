@@ -9,7 +9,7 @@ const urlsToCache = [
   '/',
   '/index.html',
   '/assets/index-CT8beXoE.js',
-  '/assets/index-DFxTzgur.css',
+  '/assets/index-HKo-lU_1',
   '/assets/logo_footer-BnavPvK6.svg',
   '/assets/logo_header-4dMxm99W.svg',
   '/manifest.json',
