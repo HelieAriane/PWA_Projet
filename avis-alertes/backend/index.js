@@ -1,7 +1,7 @@
+import './db/connect.js'
 import express from 'express';
 import cors from 'cors';
 import routes from './routes/push-routes.js';
-import './db/connect.js'
 
 const allowedOrigins = [
   'http://localhost:5173', 

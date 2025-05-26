@@ -5,8 +5,8 @@ const subscriptionSchema = new mongoose.Schema({
   keys: { p256dh: String, auth: String },
   subscribeAt: { type: Date, default: Date.now },
   preferences: {
-    type: Object,
-    default: {}
+    district: { type: [String], default: [] },
+    subject: { type: [String], default: [] }
   }
 });
 

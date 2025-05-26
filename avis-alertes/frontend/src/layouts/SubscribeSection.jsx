@@ -5,6 +5,7 @@ import arrowIcon from "../assets/arrow_icon.svg";
 import { useEffect } from "react";
 
 const VAPID_PUBLIC_KEY = "BIS--CaWzFF64lzLaOFuZVsdDnGTiq52_ZMo7c4w2UQ8FQbsQOPJ1aay4oP1dFx_-dtC-JJ7vNTg-BcOxRKSRsc";
+const API_URL_BACKEND = import.meta.env.VITE_BACKEND_URL || "http://localhost:3000";
 
 function SubscribeSection() {
   const [showModal, setShowModal] = useState(false);
@@ -38,7 +39,7 @@ function SubscribeSection() {
         applicationServerKey: VAPID_PUBLIC_KEY
       })
     ).then(subscription => {
-      fetch("http://localhost:3000/api/subscribe", {
+      fetch(`${API_URL_BACKEND}/api/subscribe`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -58,7 +59,7 @@ function SubscribeSection() {
     ).then(subscription => {
       if (subscription) {
         subscription.unsubscribe();
-        fetch("http://localhost:3000/api/unsubscribe", {
+        fetch(`${API_URL_BACKEND}/api/unsubscribe`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json"
