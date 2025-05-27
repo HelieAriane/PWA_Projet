@@ -50,7 +50,7 @@ self.addEventListener('fetch', event => {
     return;
   }
 
-  if (url.origin === self.location.origin && url.pathname.startsWith('/api/alerts')) {
+  if (url.pathname.startsWith('/api/alerts')) {
     const proxyUrl = `${BACKEND_URL}${url.pathname}${url.search}`;
     event.respondWith(
       fetch(proxyUrl, {
