@@ -50,13 +50,15 @@ self.addEventListener('fetch', event => {
     return;
   }
 
-  if (url.origin === self.location.origin && url.pathname.startsWith('/api/alerts')) {
-    const proxyUrl = `${BACKEND_URL}${url.pathname}${url.search}`;
+  if (url.pathname.startsWith('/api/alerts')) {
     event.respondWith(
-      fetch(proxyUrl, {
+      fetch(`${BACKEND_URL}${url.pathname}${url.search}`, {
         method: event.request.method,
         headers: event.request.headers,
+        // Optionnel : si POST, body à gérer
+        // body: event.request.body,
         mode: 'cors',
+        credentials: 'same-origin',
       }).then(response => {
         if (!response.ok) throw new Error('Network response was not ok');
         return response;
@@ -107,10 +109,10 @@ self.addEventListener('fetch', event => {
           });
       })
   );
-});
+}); 
 
 self.addEventListener('push', event => {
-  let data = { title: 'Notification', body: 'Vous avez une nouvelle alerte.' };
+    let data = { title: 'Notification', body: 'Vous avez une nouvelle alerte.' };
 
   try {
     if (event.data) {
@@ -126,12 +128,12 @@ self.addEventListener('push', event => {
     icon: '/icons/android/android-launchericon-192-192.png',
   });
 
-  self.clients.matchAll().then(clients => {
-    clients.forEach(client => {
-      client.postMessage({
-        title: data.title,
-        body: data.body,
-      });
+    self.clients.matchAll().then(clients => {
+        clients.forEach(client => {
+            client.postMessage({
+                title: data.title,
+                body: data.body,
+            });
+        });
     });
-  });
 });
