@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'v1';
+const CACHE_VERSION = 'v2';
 const CACHE_NAME = `avis-alertes-cache-${CACHE_VERSION}`;
 const STATIC_CACHE = `avis-alertes-static-${CACHE_VERSION}`;
 const MAP_TILE_CACHE = `avis-alertes-map-tiles-${CACHE_VERSION}`;
@@ -6,14 +6,14 @@ const BACKEND_URL = "https://avis-alertes-arianehelie.onrender.com";
 
 // Assets to cache - Vite-specific paths
 const urlsToCache = [
-  '/',
-  '/index.html',
-  '/assets/index-a5WmKbCz.js',
-  '/assets/index-HKo-lU_1.css',
-  '/assets/logo_footer-BnavPvK6.svg',
-  '/assets/logo_header-4dMxm99W.svg',
-  '/manifest.json',
-  '/vite.svg',
+  './',
+  './index.html',
+  './assets/index-B7gECaE8.js',
+  './assets/index-HKo-lU_1.css',
+  './assets/logo_footer-BnavPvK6.svg',
+  './assets/logo_header-4dMxm99W.svg',
+  './manifest.json',
+  './vite.svg',
   // Add any other static assets your app needs
 ];
 
@@ -50,15 +50,13 @@ self.addEventListener('fetch', event => {
     return;
   }
 
-  if (url.pathname.startsWith('/api/alerts')) {
+  if (url.origin === self.location.origin && url.pathname.startsWith('/api/alerts')) {
+    const proxyUrl = `${BACKEND_URL}${url.pathname}${url.search}`;
     event.respondWith(
-      fetch(`${BACKEND_URL}${url.pathname}${url.search}`, {
+      fetch(proxyUrl, {
         method: event.request.method,
         headers: event.request.headers,
-        // Optionnel : si POST, body à gérer
-        // body: event.request.body,
         mode: 'cors',
-        credentials: 'same-origin',
       }).then(response => {
         if (!response.ok) throw new Error('Network response was not ok');
         return response;
@@ -109,10 +107,10 @@ self.addEventListener('fetch', event => {
           });
       })
   );
-}); 
+});
 
 self.addEventListener('push', event => {
-    let data = { title: 'Notification', body: 'Vous avez une nouvelle alerte.' };
+  let data = { title: 'Notification', body: 'Vous avez une nouvelle alerte.' };
 
   try {
     if (event.data) {
@@ -128,12 +126,12 @@ self.addEventListener('push', event => {
     icon: '/icons/android/android-launchericon-192-192.png',
   });
 
-    self.clients.matchAll().then(clients => {
-        clients.forEach(client => {
-            client.postMessage({
-                title: data.title,
-                body: data.body,
-            });
-        });
+  self.clients.matchAll().then(clients => {
+    clients.forEach(client => {
+      client.postMessage({
+        title: data.title,
+        body: data.body,
+      });
     });
+  });
 });
