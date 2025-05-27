@@ -59,10 +59,20 @@ self.addEventListener('fetch', event => {
         mode: 'cors',
       }).then(response => {
         if (!response.ok) throw new Error('Network response was not ok');
+
+        const responseClone = response.clone();
+        caches.open(CACHE_NAME).then(cache => {
+          cache.put(event.request, responseClone);
+        });
+
         return response;
-      }).catch(err => {
-        console.error('Fetch failed:', err);
-        return new Response('Service Unavailable', { status: 503, statusText: 'Service Unavailable' });
+      }).catch(() => {
+        return caches.match(event.request)
+          .then(cachedResponse => {
+            if (cachedResponse) return cachedResponse;
+            console.error('Fetch failed:', err);
+            return new Response('Service Unavailable', { status: 503, statusText: 'Service Unavailable' });
+          });
       })
     );
     return;
