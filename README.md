@@ -119,7 +119,9 @@ avis-alertes/
     │   ├── App.jsx                                 # Composant racine React
     │   ├── index.css
     │   └── main.jsx                                # Point d'entrée React (ReactDOM)
-    │
+    │ 
+    ├── .env                                        # Variables d’environnement
+    │ 
     └── index.html                                  # Page HTML de base (utile pour certaines config PWA)
 ```
 
