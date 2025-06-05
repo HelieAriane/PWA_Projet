@@ -2,30 +2,33 @@ import React from 'react';
 
 function Pagination({ currentPage, totalPages, onPageChange }) {
   const pageNumbers = () => {
-    const pages = [];
-
-    pages.push(1);
+    const pages = new Set();
 
     if (totalPages <= 7) {
-      for (let i = 2; i <= totalPages; i++) {
-        pages.push(i);
+      for (let i = 1; i <= totalPages; i++) {
+        pages.add(i);
       }
     } else {
+      pages.add(1);
+
       if (currentPage <= 4) {
-        pages.push(2, 3, 4, 5, "...");
-      } else if (currentPage >= totalPages - 2) {
-        pages.push("...", totalPages - 4, totalPages - 3, totalPages - 2, totalPages - 1, totalPages);
+        for (let i = 2; i <= 5; i++) pages.add(i);
+        pages.add("...");
+      } else if (currentPage >= totalPages - 3) {
+        pages.add("...");
+        for (let i = totalPages - 4; i < totalPages; i++) pages.add(i);
       } else {
-        pages.push("...", currentPage - 2, currentPage - 1, currentPage, currentPage + 1, currentPage + 2, "...");
+        pages.add("...");
+        for (let i = currentPage - 1; i <= currentPage + 1; i++) pages.add(i);
+        pages.add("...");
       }
+
+      pages.add(totalPages);
     }
 
-    if (totalPages > 1) {
-      pages.push(totalPages);
-    }
-
-    return pages;
+    return Array.from(pages);
   };
+
 
   const handleClick = (page) => {
     if (page !== "...") {

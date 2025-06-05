@@ -732,18 +732,26 @@ select {
   line-height: 20px;
   color: #637381;
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* Firefox */
+  gap: 8px;
+}
+
+.pagination-container::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
 }
 
 .pagination-button {
-  width: 40px;
+  min-width: 40px;
   height: 40px;
   background-color: transparent;
   color: #097d6c;
   border: 1px solid #ced4da;
   font-size: 16px;
   font-weight: 700;
-  margin: 0 5px;
+  flex: 0 0 auto;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -1150,8 +1158,9 @@ select {
   }
 
   .pagination-button {
-    width: 35px;
+    min-width: 35px;
     height: 35px;
+    font-size: 14px;
     margin: 0 2px;
   }
 
@@ -1237,5 +1246,12 @@ select {
 
   .logo-image {
     width: 100px;
+  }
+
+  .pagination-button {
+    min-width: 32px;
+    height: 32px;
+    font-size: 13px;
+    margin: 0 1px;
   }
 }
