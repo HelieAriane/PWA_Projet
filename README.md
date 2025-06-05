@@ -13,6 +13,8 @@ Pour y parvenir, nous avons entrepris la transformation du site web existant en 
 
 Ce projet met donc l’accent sur l’utilisabilité, l’accessibilité et la réactivité, au service des citoyens de Montréal.
 
+**URL du site** : https://avis-alertes-arianehelie.netlify.app/
+
 ## Mandat du projet
 L'application aura des fonctionnalités de recherche et filtre et présentera deux pages principales: la page d'accueil et la page de détail.
 
@@ -117,7 +119,9 @@ avis-alertes/
     │   ├── App.jsx                                 # Composant racine React
     │   ├── index.css
     │   └── main.jsx                                # Point d'entrée React (ReactDOM)
-    │
+    │ 
+    ├── .env                                        # Variables d’environnement
+    │ 
     └── index.html                                  # Page HTML de base (utile pour certaines config PWA)
 ```
 
